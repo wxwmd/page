@@ -1,46 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>鼠标悬停</title>
-    <style>
-        div{
-            clear:both;
-            margin:5px 0 0 0;
-            font-size:12px;
-            line-height:22px;
-        }
-        a.alt{
-            position:relative;
-            background-color:#fff;
-            float:left;
-            width:158px;height:20px;
-            margin:0 auto;
-            border:1px solid #eee;
-            text-align:center;
-            text-decoration:none;
-            color:#0066cc;
-        }
-        a.alt:hover{
-            background:#fff;
-            text-decoration:none;z-index:2;
-        }
-        a.alt span{
-            display:none;
-        }
-        a.alt:hover span{
-            position:absolute;
-            display:block;
-            top:-1px;left:158px;
-            width:130px;height:60px;
-            border:1px solid #eee;
-            z-index:1;
-        }
-    </style>
+    <meta charset="utf-8">
+    <title>首页</title>
 </head>
 <body>
-<div>
-    <a class='alt' href="/"><span>test1</span>test</a>
-</div>
+<div id="Date"></div>
+<script type="text/javascript">
+    var hours=0
+    var mins=0
+    var seconds=0
+    var times=0
+    setInterval(function(){
+        times+=1
+        hours=parseInt(times/3600)
+        mins=parseInt((times-hours*3600)/60)
+        seconds=times%60
+        var d = document.getElementById('Date');
+        d.innerHTML='考试用时:'+hours+':'+mins+':'+seconds;
+    },1000)
+</script>
 </body>
 </html>
