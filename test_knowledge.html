@@ -10,6 +10,30 @@
     <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
     <link rel="stylesheet" href="css/public.css" media="all">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
+
+    <!-- Admin Forms CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <style>
         .layui-card {
             border: 1px solid #f2f2f2;
@@ -21,16 +45,8 @@
             color: #1aa094;
         }
 
-        .icon-cray {
-            color: #ffb800 !important;
-        }
-
         .icon-blue {
             color: #1e9fff !important;
-        }
-
-        .icon-tip {
-            color: #ff5722 !important;
         }
 
         .layuimini-qiuck-module {
@@ -75,86 +91,261 @@
     </style>
 </head>
 
-<body>
+<body style="background: #FFFFFF">
+
 <div class="layuimini-container">
-    <div class="layuimini-main">
+    <div class="layuimini-main" id="select">
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
                 <div class="layui-row layui-col-space15">
                     <div class="layui-col-md12">
                         <div class="layui-card">
                             <div class="layui-card-header"><i class="fa fa-pencil icon icon-blue"></i>选择科目
+                                <span>已为您选择：{{keshi}}</span>
+                                <span style="margin-left: 30px">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    请选择题量<b class="caret"></b>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a @click="setnum(5)">5题</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setnum(10)">10题</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setnum(20)">20题</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setnum(50)">50题</a>
+                                                    </li>
+                                                    <li>
+                                                        <div class="input-group" style="width: 150px;height: 30px">
+                                                            <span class="input-group-addon" style="margin-left: 20px">题量</span>
+                                                            <input type="number" class="form-control" placeholder="" v-model="num">
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                    <span style="margin-left: 10px">已选择：{{num}}题</span>
+                                </span>
+                                <span class="col-md-offset-8">
+                                    <button class="btn btn-success" style="">
+                                        开始考试
+                                    </button>
+                                </span>
                             </div>
                             <div class="layui-card-body">
                                 <div class="welcome-module">
                                     <div class="layui-row layui-col-space10 layuimini-qiuck">
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html"
+                                            <a href="#"
                                                data-title="菜单管理" data-icon="fa fa-window-maximize">
-                                                <i class="fa fa-window-maximize"></i>
-                                                <cite>病历首页</cite>
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/neike.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    临床内科学<b class="caret"></b>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a @click="setkeshi('心血管病学')">心血管病学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('呼吸病学')">呼吸病学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('血液病学')">血液病学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('肾脏病学')">肾脏病学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('内分泌学')">内分泌学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('感染病学（传染病学）')">感染病学（传染病学）</a>
+                                                    </li>
+                                                </ul>
                                             </a>
                                         </div>
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/setting.html"
-                                               data-title="系统设置" data-icon="fa fa-gears">
-                                                <i class="fa fa-gears"></i>
-                                                <cite>系统设置</cite>
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/waike.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    临床外科学<b class="caret"></b>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a @click="setkeshi('烧伤外科学')">烧伤外科学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('烧伤外科学')">烧伤外科学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('烧伤外科学')">烧伤外科学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('神经外科学')">神经外科学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('泌尿外科学')">泌尿外科学</a>
+                                                    </li>
+                                                    <li>
+                                                        <a @click="setkeshi('肿瘤外科学')">肿瘤外科学</a>
+                                                    </li>
+                                                </ul>
                                             </a>
                                         </div>
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html"
-                                               data-title="表格示例" data-icon="fa fa-file-text">
-                                                <i class="fa fa-file-text"></i>
-                                                <cite>医技模板管理</cite>
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/erbihouke.svg"  width="60" alt="耳鼻喉科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('耳鼻喉科学')">
+                                                    耳鼻喉科学
+                                                </a>
                                             </a>
                                         </div>
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html"
-                                               data-title="图标列表" data-icon="fa fa-dot-circle-o">
-                                                <i class="fa fa-dot-circle-o"></i>
-                                                <cite>西药处方模板管理</cite>
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/weichangke.svg"  width="60" alt="胃肠科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('胃肠科学')">
+                                                    胃肠科学
+                                                </a>
                                             </a>
                                         </div>
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html"
-                                               data-title="表单示例" data-icon="fa fa-calendar">
-                                                <i class="fa fa-calendar"></i>
-                                                <cite>中药处方模板管理</cite>
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/yanke.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('眼科学')">
+                                                    眼科学
+                                                </a>
                                             </a>
                                         </div>
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html"
-                                               data-title="404页面" data-icon="fa fa-hourglass-end">
-                                                <i class="fa fa-hourglass-end"></i>
-                                                <cite>费用科目管理</cite>
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/ganke.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('肝科学')">
+                                                    肝科学
+                                                </a>
                                             </a>
                                         </div>
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html"
-                                               data-title="按钮示例" data-icon="fa fa-snowflake-o">
-                                                <i class="fa fa-snowflake-o"></i>
-                                                <cite>门诊日结核对</cite>
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/neike.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('骨科学')">
+                                                    骨科学
+                                                </a>
                                             </a>
                                         </div>
                                         <div class="layui-col-md1 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="https://www.baidu.com"
-                                               data-title="百度搜索" data-icon="fa fa-search">
-                                                <i class="fa fa-search"></i>
-                                                <cite>门诊医生工作量统计</cite>
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/jizhenke.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('急诊学')">
+                                                    急诊学
+                                                </a>
+                                            </a>
+                                        </div>
+                                        <div class="layui-col-md1 layuimini-qiuck-module">
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/kangfuke.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('康复学')">
+                                                    康复学
+                                                </a>
+                                            </a>
+                                        </div>
+                                        <div class="layui-col-md1 layuimini-qiuck-module">
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/kouqiangke.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('口腔学')">
+                                                    口腔学
+                                                </a>
+                                            </a>
+                                        </div>
+                                        <div class="layui-col-md1 layuimini-qiuck-module">
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/shenjingwaike.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('神经学')">
+                                                    神经学
+                                                </a>
+                                            </a>
+                                        </div>
+                                        <div class="layui-col-md1 layuimini-qiuck-module">
+                                            <a href="#"
+                                               data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                                <div style="background: #f8f8f8">
+                                                    <img src="images/keshi/pifuke.svg"  width="60" alt="内科">
+                                                </div>
+                                                <a href="#" class="dropdown-toggle" @click="setkeshi('皮肤科学')">
+                                                    皮肤科学
+                                                </a>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
+
+
                 </div>
+
             </div>
+
 
         </div>
     </div>
 </div>
+
+
+
+<script>
+    var select=new Vue({
+        el:'#select',
+        data:{
+            'keshi':'泌尿外科',
+            num:10
+        },
+        methods:{
+            setkeshi:function (keshi1){
+                this.keshi=keshi1
+            },
+            setnum:function (num1) {
+                this.num=num1
+            }
+        }
+    })
+</script>
 <script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
