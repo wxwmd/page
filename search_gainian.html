@@ -32,71 +32,19 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 
 </head>
-<body>
-    <!-- Start: Header -->
-    <header class="row ">
-        <nav class="navbar navbar-inverse" role="navigation" style="background-color: #EEEEEE">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <img src="assets/img/logos/zn.png" height="50" alt="" onclick="window.location.href='index.html'">
-                </div>
-                <div style="margin-left: 40px">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                医疗智能搜索<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="search_gainian.html">医疗概念智能搜索</a>
-                                </li>
-                                <li>
-                                    <a href="search_zhinan.html">全科临床指南智能搜索</a>
-                                </li>
-                                <li>
-                                    <a href="search_wenda.html">医患问答数据智能搜索</a>
-                                </li>
-                                <li>
-                                    <a href="search_jingyan.html">医生经验智能搜索</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="auto_answer.html">智能问答</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                医疗能力评估<b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="test_knowledge.html">医疗知识测评</a>
-                                </li>
-                                <li>
-                                    <a href="test_fangzhen.html">仿真问诊</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-1 col-md-offset-7" style="margin-top: 10px">
-                    <i class="bi bi-bell" style="font-size: 20px ;color: #00a1d9;"></i>
-                    <img class="img-circle" src="assets/img/avatars/2.jpg" height="40" style="margin-left: 10px" alt="">
-                </div>
-
-            </div>
-        </nav>
-    </header>
-    <!-- End: Header -->
-
+<body style="background-image: url('images/bg.jpg')">
 
 
     <!--搜索界面-->
     <div id="entity">
 
-        <div class="row container" style="margin-top: 100px">
+        <div class="row container">
 
-            <div class="col-md-4 col-lg-offset-6">
+            <div style="margin-top: 100px;">
+
+            </div>
+
+            <div class="col-md-4 col-lg-offset-6" style="">
                 <input type="text" class="form-control" placeholder="请输入医疗概念" v-model="name" @keyup.enter="getEntity"/>
             </div>
 

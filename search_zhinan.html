@@ -3,7 +3,7 @@
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-    <title>问答数据搜索</title>
+    <title>临床指南搜索</title>
     <meta name="keywords" content="Bootstrap 3 Admin Dashboard Template Theme" />
     <meta name="description" content="AdminDesigns - Bootstrap 3 Admin Dashboard Theme">
     <meta name="author" content="AdminDesigns">
@@ -33,71 +33,21 @@
 
 </head>
 <body>
-<!-- Start: Header -->
-<header class="row ">
-    <nav class="navbar navbar-inverse" role="navigation" style="background-color: #EEEEEE">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <img src="assets/img/logos/zn.png" height="50" alt="" onclick="window.location.href='index.html'">
-            </div>
-            <div style="margin-left: 40px">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            医疗智能搜索<b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="search_gainian.html">医疗概念智能搜索</a>
-                            </li>
-                            <li>
-                                <a href="search_zhinan.html">全科临床指南智能搜索</a>
-                            </li>
-                            <li>
-                                <a href="search_wenda.html">医患问答数据智能搜索</a>
-                            </li>
-                            <li>
-                                <a href="search_jingyan.html">医生经验智能搜索</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="auto_answer.html">智能问答</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            医疗能力评估<b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="test_knowledge.html">医疗知识测评</a>
-                            </li>
-                            <li>
-                                <a href="test_fangzhen.html">仿真问诊</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-1 col-md-offset-7" style="margin-top: 10px">
-                <i class="bi bi-bell" style="font-size: 20px ;color: #00a1d9;"></i>
-                <img class="img-circle" src="assets/img/avatars/2.jpg" height="40" style="margin-left: 10px" alt="">
-            </div>
 
-        </div>
-    </nav>
-</header>
-<!-- End: Header -->
 
 
 
 <!--搜索界面-->
 <div id="entity">
 
-    <div class="row container" style="margin-top: 100px">
+
+
+    <div class="row container" >
+
+        <div style="margin-top: 100px"></div>
 
         <div class="col-md-4 col-lg-offset-6">
-            <input type="text" class="form-control" placeholder="请输入问答数据关键字" v-model="word" @keyup.enter="getGuidance"/>
+            <input type="text" class="form-control" placeholder="请输入临床指南关键字" v-model="word" @keyup.enter="getGuidance"/>
         </div>
 
         <div class="input-group-btn col-md-1">
@@ -111,7 +61,7 @@
         <div class="alert alert-micro alert-border-left alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <i class="fa fa-check pr10"></i>
-            <strong>搜索成功!</strong> 请查看问答数据
+            <strong>搜索成功!</strong> 请查看临床指南
         </div>
     </div>
 
@@ -119,7 +69,7 @@
         <div class="alert alert-sm alert-border-left alert-warning alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <i class="fa fa-check pr10"></i>
-            <strong>没有找到对应的问答数据!</strong>
+            <strong>没有找到对应的临床指南!</strong>
         </div>
     </div>
 
@@ -135,14 +85,20 @@
         <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr class="info">
-                <th>问题</th>
-                <th>回答</th>
+                <th>名称</th>
+                <th>发布时间</th>
+                <th>发布组织</th>
+                <th>描述</th>
+                <th>地址</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="(item,index) in objects">
-                <th>{{item.问题}}</th>
-                <th>{{item.回答}}</th>
+                <th>{{item.名称}}</th>
+                <th>{{item.发布时间}}</th>
+                <th>{{item.发布组织}}</th>
+                <th>{{item.描述}}</th>
+                <th><a :href="item.地址">{{item.地址}}</a> </th>
             </tr>
             </tbody>
         </table>
@@ -163,10 +119,11 @@
         methods:{
             getGuidance:function (){
                 var that=this
-                axios.get("http://localhost:8080/interaction?word="+this.word).then(function (response){
+                axios.get("http://localhost:8080/getGuidance?word="+this.word).then(function (response){
                     console.log(response.data)
                     if (response.data.length===0){
                         that.status=2
+
                     }else{
                         that.objects=response.data
                         console.log(that.objects)
