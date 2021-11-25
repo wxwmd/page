@@ -89,8 +89,8 @@
 
 <body>
 
-<div class="layuimini-container">
-    <div class="layuimini-main" id="select">
+<div class="layuimini-container" id="select">
+    <div class="layuimini-main" >
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
                 <div class="layui-row">
@@ -99,8 +99,10 @@
                             <div class="layui-card-header">
                                 <i class="fa fa-pencil icon icon-blue"></i>
                                 <span class="h4" style="text-align: center">医学知识测试（泌尿外科）</span>
+                                <span class="h4" style="margin-left: 50px" v-if="num===-1">您的得分为：<font color="#228b22">80</font> 分</span>
                             </div>
-                            <div class="layui-card-body row" style="height: 1000px">
+
+                            <div class="layui-card-body row" :style="{height:this.cardh}">
                                 <div class="welcome-module" style="margin-left: 30px;margin-right: 30px">
                                     <div>
                                         <div style="float: left; width: 20px">
@@ -110,106 +112,185 @@
                                             <div >
                                                 <h4>TURBT术后即刻膀胱灌注化疗的禁忌症？</h4>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q1-radio1" name="radioExample">
-                                                <label for="q1-radio1" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                            <form>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q1-radio1" name="radioExample">
+                                                    <label for="q1-radio1" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q1-radio2" name="radioExample">
+                                                    <label for="q1-radio2" class="h4">B. 多发性肿瘤、CIS、高级别肿瘤</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q1-radio3" name="radioExample">
+                                                    <label for="q1-radio3" class="h4">C. T1期肿瘤、G3/高级别肿瘤</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q1-radio4" name="radioExample">
+                                                    <label for="q1-radio4" class="h4">D. 严重免疫抑制（淋巴瘤、白血病、类固醇激素应用、艾滋病等）</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div style="margin-left: 10px;margin-top: 30px" v-if="num===-1">
+                                            <div>
+                                                <h4>正确答案是：<font color="#30c9a1">C</font></h4>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q1-radio2" name="radioExample">
-                                                <label for="q1-radio2" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                            <div>
+                                                <div style="float: left;width: 30px" >
+                                                    <strong>解析</strong>
+                                                </div>
+                                                <div style="margin-left: 35px">
+                                                    <p>术中疑似发生膀胱穿孔、术后严重肉眼血尿的患者不宜行即刻膀胱灌注化疗。</p>
+                                                </div>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q1-radio3" name="radioExample">
-                                                <label for="q1-radio3" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
-                                            </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q1-radio4" name="radioExample">
-                                                <label for="q1-radio4" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
-                                            </div>
+
                                         </div>
                                         <hr style="margin-left: 0;margin-right: 50px">
                                     </div>
                                     <div>
                                         <div style="float: left; width: 20px">
-                                            <h4 style="margin-top: 0">1.</h4>
+                                            <h4 style="margin-top: 0">2.</h4>
                                         </div>
                                         <div style="margin-left: 30px">
                                             <div >
-                                                <h4>TURBT术后即刻膀胱灌注化疗的禁忌症？</h4>
+                                                <h4>对NMIBC患者，BCG维持治疗3年是否优于维持治疗1年？</h4>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio1" name="radioExample">
-                                                <label for="q2-radio1" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                           <form>
+                                               <div class="radio-custom radio-success mb5">
+                                                   <input type="radio" id="q2-radio1" name="radioExample">
+                                                   <label for="q2-radio1" class="h4">A. 建议行1-3年的标准剂量BCG维持灌注治疗</label>
+                                               </div>
+                                               <div class="radio-custom radio-success mb5">
+                                                   <input type="radio" id="q2-radio2" name="radioExample">
+                                                   <label for="q2-radio2" class="h4">B. 应综合考虑患者的复发和进展风险、不良反应及医疗条件</label>
+                                               </div>
+                                               <div class="radio-custom radio-success mb5">
+                                                   <input type="radio" id="q2-radio3" name="radioExample">
+                                                   <label for="q2-radio3" class="h4">C. 可行1年BCG膀胱内治疗</label>
+                                               </div>
+                                               <div class="radio-custom radio-success mb5">
+                                                   <input type="radio" id="q2-radio4" name="radioExample">
+                                                   <label for="q2-radio4" class="h4">D. 以上说法都不对</label>
+                                               </div>
+                                           </form>
+                                        </div>
+                                        <div style="margin-left: 10px;margin-top: 30px" v-if="num===-1">
+                                            <div>
+                                                <h4>正确答案是：<font color="red">C</font></h4>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio2" name="radioExample">
-                                                <label for="q2-radio2" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                            <div>
+                                                <div style="float: left;width: 30px" >
+                                                    <strong>解析</strong>
+                                                </div>
+                                                <div style="margin-left: 35px">
+                                                    <p>对高危患者，建议行1-3年的标准剂量BCG维持灌注治疗；</p>
+                                                    <p>中危患者可行1年BCG膀胱内治疗，最终选择应综合考虑患者的复发和进展风险、不良反应及医疗条件。</p>
+                                                </div>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio3" name="radioExample">
-                                                <label for="q2-radio3" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
-                                            </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio4" name="radioExample">
-                                                <label for="q2-radio4" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
-                                            </div>
+
                                         </div>
                                         <hr style="margin-left: 0;margin-right: 50px">
                                     </div>
                                     <div>
                                         <div style="float: left; width: 20px">
-                                            <h4 style="margin-top: 0">1.</h4>
+                                            <h4 style="margin-top: 0">3.</h4>
                                         </div>
                                         <div style="margin-left: 30px">
                                             <div >
-                                                <h4>TURBT术后即刻膀胱灌注化疗的禁忌症？</h4>
+                                                <h4>复发性NMIBC患者，膀胱内BCG灌注治疗是否优于化学药物灌注治疗？</h4>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio1" name="radioExample">
-                                                <label for="q2-radio1" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                            <form>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q3-radio1" name="radioExample">
+                                                    <label for="q3-radio1" class="h4">A. 可立即给予一次膀胱灌注化疗</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q3-radio2" name="radioExample">
+                                                    <label for="q3-radio2" class="h4">B. 可考虑继续进行BCG灌注治疗</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q3-radio3" name="radioExample">
+                                                    <label for="q3-radio3" class="h4">C. 推荐BCG灌注治疗</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q3-radio4" name="radioExample">
+                                                    <label for="q3-radio4" class="h4">D. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div style="margin-left: 10px;margin-top: 30px" v-if="num===-1">
+                                            <div>
+                                                <h4>正确答案是：<font color="#30c9a1">C</font></h4>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio2" name="radioExample">
-                                                <label for="q2-radio2" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
+                                            <div>
+                                                <div style="float: left;width: 30px" >
+                                                    <strong>解析</strong>
+                                                </div>
+                                                <div style="margin-left: 35px">
+                                                    <p>对膀胱灌注化疗后复发低危肿瘤和小乳头状瘤的患者，可立即给予一次膀胱灌注化疗；</p>
+                                                    <p>对BCG膀胱灌注后复发低危肿瘤的患者，可考虑继续进行BCG灌注治疗；</p>
+                                                    <p>对高危复发患者，除需要进行膀胱全切术的复发高危患者外，推荐BCG灌注治疗。</p>
+                                                </div>
                                             </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio3" name="radioExample">
-                                                <label for="q2-radio3" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
-                                            </div>
-                                            <div class="radio-custom radio-success mb5">
-                                                <input type="radio" id="q2-radio4" name="radioExample">
-                                                <label for="q2-radio4" class="h4">A. 术中疑似发生膀胱穿孔、术后严重肉眼血尿</label>
-                                            </div>
+
                                         </div>
                                         <hr style="margin-left: 0;margin-right: 50px">
                                     </div>
                                     <div>
                                         <div style="float: left; width: 20px">
-                                            <h4 style="margin-top: 0">1.</h4>
+                                            <h4 style="margin-top: 0">4.</h4>
                                         </div>
                                         <div style="margin-left: 30px">
                                             <div >
-                                                <h4>TURBT术后即刻膀胱灌注化疗的禁忌症？</h4>
+                                                <h4>BCG不良反应的管理方案是什么？</h4>
                                             </div>
                                             <div class="input-group" style="width: 600px; height: 30px;">
                                                 <span class="input-group-addon" style="margin-left: 20px;">答案</span>
                                                 <input type="text" placeholder="" class="form-control">
                                             </div>
                                         </div>
+                                        <div style="margin-left: 10px;margin-top: 30px" v-if="num===-1">
+                                            <div>
+                                                <h4>正确答案是：<font color="#30c9a1">C</font></h4>
+                                            </div>
+                                            <div>
+                                                <div style="float: left;width: 30px" >
+                                                    <strong>解析</strong>
+                                                </div>
+                                                <div style="margin-left: 35px">
+                                                    <p>术中疑似发生膀胱穿孔、术后严重肉眼血尿的患者不宜行即刻膀胱灌注化疗。</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                         <hr style="margin-left: 0;margin-right: 50px">
                                     </div>
                                     <div>
                                         <div style="float: left; width: 20px">
-                                            <h4 style="margin-top: 0">1.</h4>
+                                            <h4 style="margin-top: 0">5.</h4>
                                         </div>
                                         <div style="margin-left: 30px">
                                             <div >
-                                                <h4>TURBT术后即刻膀胱灌注化疗的禁忌症？</h4>
+                                                <h4>BCG治疗过程中肿瘤持续存在或BCG治疗失败后的治疗方案是什么？</h4>
                                             </div>
-                                            <div class="input-group" style="width: 600px; height: 30px;">
+                                            <div class="input-group" style="width: 900px; height: 30px;">
                                                 <span class="input-group-addon" style="margin-left: 20px;">答案</span>
-                                                <input type="text" placeholder="" class="form-control">
+                                                <textarea name="keywords" class="layui-textarea" placeholder=""></textarea>
                                             </div>
+                                        </div>
+                                        <div style="margin-left: 10px;margin-top: 30px" v-if="num===-1">
+                                            <div>
+                                                <h4>正确答案是：<font color="#30c9a1">C</font></h4>
+                                            </div>
+                                            <div>
+                                                <div style="float: left;width: 30px" >
+                                                    <strong>解析</strong>
+                                                </div>
+                                                <div style="margin-left: 35px">
+                                                    <p>术中疑似发生膀胱穿孔、术后严重肉眼血尿的患者不宜行即刻膀胱灌注化疗。</p>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <hr style="margin-left: 0;margin-right: 50px">
                                     </div>
@@ -226,15 +307,12 @@
                     </div>
 
                     <div style="margin-left:20px">
-                        <button class="btn btn-success">
+                        <button class="btn btn-success" @click="setnum(-1)">
                             <i class="fa fa-check" aria-hidden="true"></i>
                             <span>提交</span>
                         </button>
                     </div>
-
             </div>
-
-
         </div>
     </div>
 </div>
@@ -244,7 +322,7 @@
         var mins=0
         var seconds=0
         var times=0
-        setInterval(function(){
+        sh=setInterval(function(){
             times+=1
             hours=parseInt(times/3600)
             mins=parseInt((times-hours*3600)/60)
@@ -259,7 +337,8 @@
         el:'#select',
         data:{
             'keshi':'泌尿外科',
-            num:10
+            num:10,
+            cardh:'1000px'
         },
         methods:{
             setkeshi:function (keshi1){
@@ -267,7 +346,11 @@
             },
             setnum:function (num1) {
                 this.num=num1
-            }
+                if(num1===-1){
+                    this.cardh='1500px'
+                    clearInterval(sh)
+                }
+            },
         }
     })
 </script>
@@ -372,7 +455,7 @@
         }
 
     });
-</script>
+</script></div>
 </body>
 
 </html>
