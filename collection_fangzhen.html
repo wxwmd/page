@@ -89,7 +89,7 @@
 
 <body style="background-color: #FFFFFF">
 
-<div class="layuimini-container" id="fangzhen_paper">
+<div class="layuimini-container" id="collection_fangzhen">
     <div class="layuimini-main" >
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
@@ -99,59 +99,45 @@
                             <div class="layui-card-header">
                                 <i class="fa fa-pencil icon icon-blue"></i>
                                 <span class="h4" style="text-align: center">医学知识测试（泌尿外科）</span>
-                                <span class="h4" style="margin-left: 50px" v-if="num===-1">您的得分为：<font color="#228b22">80</font> 分</span>
                             </div>
 
-                           <div class="layui-col-md12">
-                               <div class="layui-col-md6" style="background-color: #f7f7f7">
-                                   <div>
-                                       <h3><font color="#1e90ff">病例</font> </h3>
-                                   </div>
-                                   <div style="margin-left: 10px;margin-top: 10px">
-                                       <p>基本信息：患者男性，59岁，无既往史或个人史。</p>
-                                       <p>主诉：膀胱癌</p>
-                                       <p>现病史：2021年4月22日以“反复排肉眼血尿三个月”为主诉就诊；超声检查提示膀胱占位，不除外膀胱恶性肿瘤。</p>
-                                       <p>入院检查：1、多参数MRI，膀胱左侧壁结节灶，大小约1.6*1.8cm，病灶突破浆膜层伴周围组织浸润，累及左侧输尿管内口。病灶周围、左侧髂内动脉旁及双侧腹股沟区多发淋巴结，考虑转移可能；2、膀胱镜检查及活检病理，膀胱左侧壁可见多发菜花样肿物，基底宽，肿物表面附有絮状物。对肿物进行多点活检。病理活检示：符合高级别浸润性尿路上皮癌，免疫组化：肿瘤细胞CK7(+)，CK20部分(+)，GAT A3 (+)，P63 (+)，PSA (-)，Ki-67约60% (+)</p>
-                                       <p>诊断：膀胱高级别浸润性尿路上皮癌（肿瘤分期：T3N1M0）。</p>
-                                   </div>
-                               </div>
-                               <div class="layui-col-md6">
-                                   <div style="margin-left: 20px">
-                                       <h3><font color="#1e90ff">问题</font> </h3>
-                                   </div>
-                                   <div style="float: right;margin-right: 10px" @click="setCollec" >
-                                       <i class="fa fa-star fa-lg"  :class="{'text-warning':collec}"></i>
-                                   </div>
-                                   <div style="margin-left: 30px;margin-top: 10px">
-                                       <p>根据左侧患者信息，给出合适的治疗方案。</p>
-                                   </div>
+                            <div class="layui-col-md12">
+                                <div class="layui-col-md6" style="background-color: #f7f7f7">
+                                    <div>
+                                        <h3><font color="#1e90ff">病例</font> </h3>
+                                    </div>
+                                    <div style="margin-left: 10px;margin-top: 10px">
+                                        <p>基本信息：患者男性，59岁，无既往史或个人史。</p>
+                                        <p>主诉：膀胱癌</p>
+                                        <p>现病史：2021年4月22日以“反复排肉眼血尿三个月”为主诉就诊；超声检查提示膀胱占位，不除外膀胱恶性肿瘤。</p>
+                                        <p>入院检查：1、多参数MRI，膀胱左侧壁结节灶，大小约1.6*1.8cm，病灶突破浆膜层伴周围组织浸润，累及左侧输尿管内口。病灶周围、左侧髂内动脉旁及双侧腹股沟区多发淋巴结，考虑转移可能；2、膀胱镜检查及活检病理，膀胱左侧壁可见多发菜花样肿物，基底宽，肿物表面附有絮状物。对肿物进行多点活检。病理活检示：符合高级别浸润性尿路上皮癌，免疫组化：肿瘤细胞CK7(+)，CK20部分(+)，GAT A3 (+)，P63 (+)，PSA (-)，Ki-67约60% (+)</p>
+                                        <p>诊断：膀胱高级别浸润性尿路上皮癌（肿瘤分期：T3N1M0）。</p>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md6">
+                                    <div style="margin-left: 20px">
+                                        <h3><font color="#1e90ff">问题</font> </h3>
+                                    </div>
+                                    <div style="float: right;margin-right: 10px" @click="setCollec" >
+                                        <i class="fa fa-star fa-lg"  :class="{'text-warning':collec}"></i>
+                                    </div>
+                                    <div style="margin-left: 30px;margin-top: 10px">
+                                        <p>根据左侧患者信息，给出合适的治疗方案。</p>
+                                    </div>
 
-                                   <div class="input-group" >
-<!--                                       进行TURBT手术，术后即刻行灌注治疗。-->
-                                       <textarea name="keywords" class="layui-textarea" placeholder="" style="width: 600px; height: 200px;margin-left: 30px"></textarea>
-                                   </div>
-                               </div>
-                           </div>
+                                    <div class="input-group" >
+                                        <!--                                       进行TURBT手术，术后即刻行灌注治疗。-->
+                                        <textarea name="keywords" class="layui-textarea" placeholder="" style="width: 600px; height: 200px;margin-left: 30px"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="layui-col-md1 layuimini-qiuck-module" style="margin-left:20px">
-                        <button class="btn btn-info">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span id="time"></span>
-                        </button>
-                    </div>
-
-                    <div style="margin-left:20px">
-                        <button class="btn btn-success" @click="setnum(-1)">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            <span>提交</span>
-                        </button>
-                    </div>
                 </div>
 
                 <!--批改部分-->
-                <div class="layui-row" v-if="num===-1">
+                <div class="layui-row">
                     <div class="layui-col-md8 layui-col-md-offset2">
                         <div style="margin-top: 50px">
                             <h3>
@@ -211,12 +197,12 @@
 
     <script>
         var select=new Vue({
-            el:'#fangzhen_paper',
+            el:'#collection_fangzhen',
             data:{
                 'keshi':'泌尿外科',
                 num:5,
                 cardh:'1000px',
-                collec:false
+                collec:true
             },
             methods:{
                 setkeshi:function (keshi1){

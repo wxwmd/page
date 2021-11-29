@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>医学知识测试</title>
+    <title>医学问题收藏</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,7 +89,7 @@
 
 <body>
 
-<div class="layuimini-container" id="paper">
+<div class="layuimini-container" id="collection_question_paper">
     <div class="layuimini-main" >
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12">
@@ -98,8 +98,7 @@
                         <div class="layui-card">
                             <div class="layui-card-header">
                                 <i class="fa fa-pencil icon icon-blue"></i>
-                                <span class="h4" style="text-align: center">医学知识测试（泌尿外科）</span>
-                                <span class="h4" style="margin-left: 50px" v-if="num===-1">您的得分为：<font color="#228b22">80</font> 分</span>
+                                <span class="h4" style="text-align: center">医学问题收藏</span>
                             </div>
 
                             <div class="layui-card-body row" :style="{height:this.cardh}">
@@ -163,24 +162,24 @@
                                                     <i class="fa fa-star fa-lg"  :class="{'text-warning':show[1]}"></i>
                                                 </div>
                                             </div>
-                                           <form>
-                                               <div class="radio-custom radio-success mb5">
-                                                   <input type="radio" id="q2-radio1" name="radioExample">
-                                                   <label for="q2-radio1" class="h4">A. 建议行1-3年的标准剂量BCG维持灌注治疗</label>
-                                               </div>
-                                               <div class="radio-custom radio-success mb5">
-                                                   <input type="radio" id="q2-radio2" name="radioExample">
-                                                   <label for="q2-radio2" class="h4">B. 应综合考虑患者的复发和进展风险、不良反应及医疗条件</label>
-                                               </div>
-                                               <div class="radio-custom radio-success mb5">
-                                                   <input type="radio" id="q2-radio3" name="radioExample">
-                                                   <label for="q2-radio3" class="h4">C. 可行1年BCG膀胱内治疗</label>
-                                               </div>
-                                               <div class="radio-custom radio-success mb5">
-                                                   <input type="radio" id="q2-radio4" name="radioExample">
-                                                   <label for="q2-radio4" class="h4">D. 以上说法都不对</label>
-                                               </div>
-                                           </form>
+                                            <form>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q2-radio1" name="radioExample">
+                                                    <label for="q2-radio1" class="h4">A. 建议行1-3年的标准剂量BCG维持灌注治疗</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q2-radio2" name="radioExample">
+                                                    <label for="q2-radio2" class="h4">B. 应综合考虑患者的复发和进展风险、不良反应及医疗条件</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q2-radio3" name="radioExample">
+                                                    <label for="q2-radio3" class="h4">C. 可行1年BCG膀胱内治疗</label>
+                                                </div>
+                                                <div class="radio-custom radio-success mb5">
+                                                    <input type="radio" id="q2-radio4" name="radioExample">
+                                                    <label for="q2-radio4" class="h4">D. 以上说法都不对</label>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div style="margin-left: 10px;margin-top: 30px" v-if="num===-1">
                                             <div>
@@ -321,67 +320,31 @@
                         </div>
                     </div>
 
-                    <div class="layui-col-md1 layuimini-qiuck-module" style="margin-left:20px">
-                        <button class="btn btn-info">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span id="time"></span>
-                        </button>
-                    </div>
-
-                    <div style="margin-left:20px">
-                        <button class="btn btn-success" @click="setnum(-1)">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            <span>提交</span>
-                        </button>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
-    <script type="text/javascript">
-        var hours=0
-        var mins=0
-        var seconds=0
-        var times=0
-        sh=setInterval(function(){
-            times+=1
-            hours=parseInt(times/3600)
-            mins=parseInt((times-hours*3600)/60)
-            seconds=times%60
-            var d = document.getElementById('time');
-            d.innerHTML='考试用时:'+hours+':'+mins+':'+seconds;
-        },1000)
-    </script>
+
 
 
 <script>
     var paper=new Vue({
-        el:'#paper',
+        el:'#collection_question_paper',
         data:{
             'keshi':'泌尿外科',
-            num:10,
-            cardh:'1000px',
+            num:-1,
+            cardh:'1500px',
             show:[
-                false,
-                false,
-                false,
-                false,
-                false
+                true,
+                true,
+                true,
+                true,
+                true
             ]
         },
         methods:{
-            setkeshi:function (keshi1){
-                this.keshi=keshi1
-            },
-            setnum:function (num1) {
-                this.num=num1
-                if(num1===-1){
-                    this.cardh='1500px'
-                    clearInterval(sh)
-                }
-            },
             setshow(index){
                 var tmp=!this.show[index]
                 this.show.splice(index,1,tmp)

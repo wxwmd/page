@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>主页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+    <style>
+        .layui-card {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #1aa094;
+        }
+
+        .icon-cray {
+            color: #ffb800 !important;
+        }
+
+        .icon-blue {
+            color: #1e9fff !important;
+        }
+
+        .icon-tip {
+            color: #ff5722 !important;
+        }
+
+        .layuimini-qiuck-module {
+            text-align: center;
+            margin-top: 10px
+        }
+
+        .layuimini-qiuck-module a i {
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 30px;
+            background-color: #F8F8F8;
+            color: #333;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+        }
+
+        .layuimini-qiuck-module a cite {
+            position: relative;
+            top: 2px;
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .welcome-module {
+            width: 100%;
+            height: 210px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+        }
+
+        .panel-body {
+            padding: 10px
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: inherit
+        }
+
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-top: .3em;
+        }
+
+        .layui-red {
+            color: red
+        }
+
+        .main_btn>p {
+            height: 40px;
+        }
+
+        .layui-bg-number {
+            background-color: #F8F8F8;
+        }
+
+        .layuimini-notice:hover {
+            background: #f6f6f6;
+        }
+
+        .layuimini-notice {
+            padding: 7px 16px;
+            clear: both;
+            font-size: 12px !important;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .layuimini-notice-title,
+        .layuimini-notice-label {
+            padding-right: 70px !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+        }
+
+        .layuimini-notice-title {
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        .layuimini-notice-extra {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 16px;
+            display: inline-block;
+            height: 16px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md8">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header"><i class="fa fa-credit-card icon icon-blue"></i>快捷入口
+                                </div>
+                                <div class="layui-card-body">
+                                    <div class="welcome-module">
+                                        <div class="layui-row layui-col-space10 layuimini-qiuck">
+                                            <div class="layui-col-xs3 layuimini-qiuck-module">
+                                                <a href="javascript:;" layuimini-content-href="search_gainian.html"
+                                                    data-title="医疗概念智能搜索" data-icon="fa fa-stethoscope">
+                                                    <i class="fa fa-stethoscope"></i>
+                                                    <cite>医疗概念智能搜索</cite>
+                                                </a>
+                                            </div>
+                                            <div class="layui-col-xs3 layuimini-qiuck-module">
+                                                <a href="javascript:;" layuimini-content-href="search_zhinan.html"
+                                                    data-title="临床指南智能搜索" data-icon="fa fa-book">
+                                                    <i class="fa fa-book"></i>
+                                                    <cite>临床指南智能搜索</cite>
+                                                </a>
+                                            </div>
+                                            <div class="layui-col-xs3 layuimini-qiuck-module">
+                                                <a href="javascript:;" layuimini-content-href="search_wenda.html"
+                                                    data-title="历史问答智能搜索" data-icon="fa fa-comments-o">
+                                                    <i class="fa fa-comments-o"></i>
+                                                    <cite>历史问答智能搜索</cite>
+                                                </a>
+                                            </div>
+                                            <div class="layui-col-xs3 layuimini-qiuck-module">
+                                                <a href="javascript:;" layuimini-content-href="search_jingyan.html"
+                                                    data-title="医生经验智能搜索" data-icon="fa fa-search">
+                                                    <i class="fa fa-search"></i>
+                                                    <cite>医生经验智能搜索</cite>
+                                                </a>
+                                            </div>
+                                            <div class="layui-col-xs3 layuimini-qiuck-module">
+                                                <a href="javascript:;" layuimini-content-href="test_knowledge.html"
+                                                    data-title="医学知识测试" data-icon="fa fa-pencil-square-o">
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                    <cite>医学知识测试</cite>
+                                                </a>
+                                            </div>
+                                            <div class="layui-col-xs3 layuimini-qiuck-module">
+                                                <a href="javascript:;" layuimini-content-href="test_fangzhen.html"
+                                                    data-title="仿真问诊" data-icon="fa fa-user-md">
+                                                    <i class="fa fa-user-md"></i>
+                                                    <cite>仿真问诊</cite>
+                                                </a>
+                                            </div>
+                                            <div class="layui-col-xs3 layuimini-qiuck-module">
+                                                <a href="javascript:;" layuimini-content-href="auto_answer.html"
+                                                    data-title="智能问答" data-icon="fa fa-quora">
+                                                    <i class="fa fa-quora"></i>
+                                                    <cite>智能问答</cite>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header"><i class="fa fa-star icon"></i>我的收藏</div>
+                                <div class="layui-card-body">
+                                    <div class="welcome-module">
+                                        <div class="layui-row layui-col-space10">
+                                            <div class="layui-col-xs6" layuimini-content-href="collection_guide.html"
+                                                 data-title="指南收藏" style="cursor: pointer">
+                                                <div class="panel layui-bg-number">
+                                                    <div class="panel-body">
+                                                        <div class="panel-title">
+                                                            <h5>指南</h5>
+                                                        </div>
+                                                        <div class="panel-content">
+                                                            <h1 class="no-margins">3</h1>
+                                                            <small>收藏的指南</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="layui-col-xs6" layuimini-content-href="collection_question.html"
+                                                 data-title="指南收藏" style="cursor: pointer">
+                                                <div class="panel layui-bg-number"  >
+                                                    <div class="panel-body">
+                                                        <div class="panel-title">
+                                                            <h5>医疗问题</h5>
+                                                        </div>
+                                                        <div class="panel-content">
+                                                            <h1 class="no-margins">5</h1>
+                                                            <small>收藏的医疗问题及解答 </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="layui-col-xs6" layuimini-content-href="collection_fangzhen.html"
+                                                 data-title="指南收藏" style="cursor: pointer">
+                                                <div class="panel layui-bg-number">
+                                                    <div class="panel-body">
+                                                        <div class="panel-title">
+<!--                                                            <span class="label pull-right layui-bg-orange">实时</span>-->
+                                                            <h5>仿真问诊</h5>
+                                                        </div>
+                                                        <div class="panel-content">
+                                                            <h1 class="no-margins">1</h1>
+                                                            <small>收藏的仿真问诊实例及解答</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>医学知识测试成绩</div>
+                                <div class="layui-card-body">
+                                    <div id="echarts-records" style="width: 100%;min-height:500px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md4">
+
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>最新指南</div>
+                        <div class="layui-card-body layui-text">
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">泌尿外科腹腔镜手术围手术期出血防治专家共识</div>
+                                <div class="layuimini-notice-extra">2021-11-15</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    中国医疗保健国际交流促进会,泌尿健康促进分会发布。<br>
+                                    腹腔镜微创手术因其创伤小、恢复快等优点日益受到临床医生的青睐,目前已经成为多数泌尿外科手术的首选方式。近些年来加速康复外科（enhanced recovery after surgery,ERAS）理念的提出和普及,对手术中及手术后康复提出了更高的要求。随着手术医师技术的日益提高,越来越多的高难度泌尿外科手术都可以通过腹腔镜完成,严重手术并发症的发生率也越来越低。但围手术期的出血,包括术中出血和术后手术创面渗血,仍然是腹腔镜手术面临的一个棘手问题,也是影响手术后快速康复的一个重要原因。在上述背景下,中国医疗保健国际交流促进会泌尿健康促进分会邀请国内泌尿外科、心内科、血管外科专家,共同撰写了本共识,以期指导泌尿外科医生合理地选用止血技术和材料,有效、规范地防治泌尿外科腹腔镜手术中及围手术期出血,提高手术安全。 <br>
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">中国泌尿男生殖系肿瘤手术后随访方案专家共识</div>
+                                <div class="layuimini-notice-extra">2021-11-11</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    泌尿外科手术部位感染(surgical site infections，SSI)是泌尿外科操作与手术最常见的并发症，如何预防相关感染对患者的治疗、生存质量及预后至关重要。本共识汇总了国内外相关指南和政策性文件，针对我国的具体情况，提出了适合我国特点的泌尿外科SSI预防的方案和建议。制定本共识旨在促进泌尿外科医生正确、合理地应用围手术期抗菌药物，保障患者用药的安全和有效，降低泌尿外科手术相关感染性并发症的发生率和病死率，减缓细菌耐药性的发展。<br>
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">2021 ACOG临床共识：雌激素依赖性乳腺癌患者泌尿生殖道症状的治疗</div>
+                                <div class="layuimini-notice-extra">2021-11-08</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    2021年，美国妇产科医师学会(ACOG)发布了雌激素依赖性乳腺癌患者泌尿生殖道症状的治疗共识。本文主要针对雌激素依赖性乳腺癌患者泌尿生殖道症状的激素治疗以及非激素治疗方案进行审查，并提出共识指导。<br>
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">2021 EAU指南：非肌层浸润性膀胱癌（Ta，T1和CIS）</div>
+                                <div class="layuimini-notice-extra">2021-11-04</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    2021年9月，欧洲泌尿外科学会(EAU)更新了非肌层浸润性膀胱癌指南，膀胱癌分期为Ta、T1和原位癌（CIS）属于非肌层浸润性膀胱癌，本文提供了EAU关于非肌层浸润性膀胱癌诊治的最新指导建议，涉及分类、危险因素、诊断、预后因素以及治疗。。<br>
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">2021 CUA指南：非肌层浸润膀胱癌的管理（全文）</div>
+                                <div class="layuimini-notice-extra">2021-03-17</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    2021年8月，加拿大泌尿外科协会(CUA)发布了非肌层浸润性性膀胱癌的管理指南。膀胱癌是全球范围内第5位常见癌症，本文主要针对非肌层浸润性性膀胱癌的管理提供指导建议，内容涉及危险因素、诊断、危险分层、治疗以及随访等。<br>
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">非肌层浸润性膀胱癌膀胱灌注治疗专家共识 （2021版）</div>
+                                <div class="layuimini-notice-extra">2021-02-13</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    膀胱癌是我国居民常见的恶性肿瘤之一，临床上75%的膀胱癌为非肌层浸润性膀胱癌，术后复发率高。膀胱灌注治疗是向膀胱内注入细胞毒性药物直接杀伤肿瘤细胞，或注入免疫制剂如卡介苗等直接或间接诱导体内发生局部免疫反应，从而降低肿瘤复发和进展的风险。2019年中国肿瘤医院泌尿肿瘤协作组发布了非肌层浸润性膀胱癌膀胱灌注治疗专家共识。近年来，国内外非肌层浸润性膀胱癌的临床诊治有了较大进展，包括非肌层浸润性膀胱癌的危险度评估，膀胱灌注药物的选择，膀胱灌注的不良反应及处理经验以及新型膀胱灌注药物的临床研究等。共识根据国内外循证医学证据，结合目前国内非肌层浸润性膀胱癌膀胱灌注治疗的临床实践和应用经验，在2019版专家共识的基础上进行了相应的探讨和更新，以期对目前国内非肌层浸润性膀胱癌膀胱灌注的临床规范化治疗提供一定指导意见。<br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>管理员心语</div>
+                        <div class="layui-card-body layui-text layadmin-text">
+                            <p>欢迎使用武汉大学中南医院医疗辅助学习系统<a
+                                    class="layui-btn layui-btn-xs layui-btn-danger" target="_blank"
+                                    href="user_guide.doc">系统使用文档</a></p>
+                            <p>系统交流QQ群（667813249）：<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=5lyiE2Q"><img
+                                        border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="layuimini"
+                                        title="layuimini"></a>（加群请备注 医院-姓名：如武汉大学中南医院-王选等）</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+    <script>
+        layui.use(['layer', 'miniTab', 'echarts'], function () {
+            var $ = layui.jquery,
+                layer = layui.layer,
+                miniTab = layui.miniTab,
+                echarts = layui.echarts;
+
+            miniTab.listen();
+
+            /**
+             * 查看公告信息
+             **/
+            $('body').on('click', '.layuimini-notice', function () {
+                var title = $(this).children('.layuimini-notice-title').text(),
+                    noticeTime = $(this).children('.layuimini-notice-extra').text(),
+                    content = $(this).children('.layuimini-notice-content').html();
+                var html =
+                    '<div style="padding:15px 20px; text-align:justify; line-height: 22px;border-bottom:1px solid #e2e2e2;background-color: #2f4056;color: #ffffff">\n' +
+                    '<div style="text-align: center;margin-bottom: 20px;font-weight: bold;border-bottom:1px solid #718fb5;padding-bottom: 5px"><h4 class="text-danger">' +
+                    title + '</h4></div>\n' +
+                    '<div style="font-size: 12px">' + content + '</div>\n' +
+                    '</div>\n';
+                parent.layer.open({
+                    type: 1,
+                    title: '最新指南' +
+                        '<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">' +
+                        noticeTime + '</span>',
+                    area: '300px;',
+                    shade: 0.8,
+                    id: 'layuimini-notice',
+                    btn: ['查看', '取消'],
+                    btnAlign: 'c',
+                    moveType: 1,
+                    content: html,
+                    success: function (layero) {
+                        var btn = layero.find('.layui-layer-btn');
+                        btn.find('.layui-layer-btn0').attr({
+                            href: 'http://guide.medlive.cn/guideline/23634',
+                            target: '_blank'
+                        });
+                    }
+                });
+            });
+
+            /**
+             * 报表功能
+             */
+            var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+            var optionRecords = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['医学知识测试分数']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['4月', '5月', '6月', '7月', '8月', '9月', '10月']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                        name: '平均分',
+                        type: 'line',
+                        data: [86, 86.5, 86.2, 88, 90.2, 91, 92.3]
+                    }
+                ]
+            };
+            echartsRecords.setOption(optionRecords);
+
+            // echarts 窗口缩放自适应
+            window.onresize = function () {
+                echartsRecords.resize();
+            }
+
+        });
+    </script>
+</body>
+
+</html>
