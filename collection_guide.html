@@ -1,40 +1,12 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-    <title>指南收藏</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <title>临床指南搜索</title>
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
     <link rel="stylesheet" href="css/public.css" media="all">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
-
-    <!-- Admin Forms CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.min.css">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
     <style>
         .layui-card {
             border: 1px solid #f2f2f2;
@@ -48,6 +20,10 @@
 
         .icon-blue {
             color: #1e9fff !important;
+        }
+
+        .layuimini-qiuck-module {
+            margin-top: 10px
         }
 
         .layuimini-qiuck-module a i {
@@ -77,7 +53,26 @@
 
         .welcome-module {
             width: 100%;
-            height: 210px;
+            height: 110px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+        }
+
+        .panel-body {
+            padding: 10px
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: inherit
         }
 
         .main_btn>p {
@@ -85,157 +80,119 @@
         }
 
     </style>
-</head>
+    <meta name="keywords" content="Bootstrap 3 Admin Dashboard Template Theme" />
+    <meta name="description" content="AdminDesigns - Bootstrap 3 Admin Dashboard Theme">
+    <meta name="author" content="AdminDesigns">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
+
+    <!-- Admin Forms CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
+</head>
 <body style="background-color: #FFFFFF">
 
-<div class="layuimini-container" id="collection_fangzhen">
-    <div class="layuimini-main" >
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-md12">
-                <div class="layui-row">
-                    <div class="layui-col-md8 layui-col-md-offset2">
-                        <div class="layui-card">
-                            <div class="layui-card-header">
-                                <i class="fa fa-pencil icon icon-blue"></i>
-                                <span class="h4" style="text-align: center">指南收藏</span>
-                            </div>
 
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                <tr class="info">
-                                    <th>名称</th>
-                                    <th>发布时间</th>
-                                    <th>发布组织</th>
-                                    <th>描述</th>
-                                    <th>地址</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th>2020 EAU指南：肌层浸润和转移性膀胱癌</th>
-                                    <th>2021-04-29</th>
-                                    <th>欧洲泌尿外科学会</th>
-                                    <th>2020年4月，欧洲泌尿外科学会(EAU)发布了肌层浸润和转移性膀胱癌指南，本文主要概述了更新的肌层浸润和转移性膀胱癌指南的主要内容，涉及诊断和治疗的最新信息，以便纳入临床实践。</th>
-                                    <th><a href="https://www.medsci.cn/guideline/show_article.do?id=165141c00190ae5c">https://www.medsci.cn/guideline/show_article.do?id=165141c00190ae5c</a></th>
-                                </tr>
-                                <tr>
-                                    <th>2021 CUA指南：非肌层浸润膀胱癌的管理（全文）</th>
-                                    <th>2021-08-15</th>
-                                    <th>加拿大泌尿外科协会</th>
-                                    <th>2021年8月，加拿大泌尿外科协会(CUA)发布了非肌层浸润性性膀胱癌的管理指南。</th>
-                                    <th><a href="https://www.medsci.cn/guideline/show_article.do?id=8f7131c0022090c0">https://www.medsci.cn/guideline/show_article.do?id=8f7131c0022090c0</a></th>
-                                </tr>
-                                <tr>
-                                    <th>2021 EAU指南：非肌层浸润性膀胱癌（Ta，T1和CIS）</th>
-                                    <th>2021-09-09</th> <th>欧洲泌尿外科学会</th>
-                                    <th>本文提供了EAU关于非肌层浸润性膀胱癌诊治的最新指导建议，涉及分类、危险因素、诊断、预后因素以及治疗。</th>
-                                    <th><a href="https://www.medsci.cn/guideline/show_article.do?id=f20911c0021860b0">https://www.medsci.cn/guideline/show_article.do?id=f20911c0021860b0</a></th>
-                                </tr>
-                                </tbody></table>
+
+
+<!--搜索界面-->
+<div id="guide">
+
+    <div class="layuimini-container" id="collection_fangzhen">
+        <div class="layuimini-main" >
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-row">
+                        <div class="layui-col-md8 layui-col-md-offset2">
+                            <div class="layui-card">
+                                <div class="layui-card-header">
+                                    <i class="fa fa-pencil icon icon-blue"></i>
+                                    <span class="h4" style="text-align: center">指南收藏</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="layuimini-container" style="background:rgba(255,255,255,0);" v-if="status===1">
+        <div class="layuimini-main">
+            <div class="layui-row layui-col-space15" >
 
-
+                <div class="layui-col-md8 layui-col-md-offset2" style="background-color: #FFFFFF">
+                    <div class="layui-card" v-for="(item,index) in objects">
+                        <div class="layui-card-header">
+                            <i class="fa fa-book icon icon-blue"></i><a :href="item.地址">{{item.名称}}</a>
+                            <div style="float: right;margin-right: 100px" @click="setStar(index)" >
+                                <i class="fa fa-star fa-lg"  :class="{'text-warning':stars[index]}"></i>
+                            </div>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="welcome-module">
+                                <div class="layui-row layui-col-space10 layuimini-qiuck">
+                                    <div class="layui-col-md12  layuimini-qiuck-module">
+                                        <span>发布组织：{{item.发布组织}}</span>
+                                        <p>发布时间：{{item.发布时间}}</p>
+                                        <p>介绍：{{item.描述}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
     </div>
 
-    <script type="text/javascript">
-        var hours=0
-        var mins=0
-        var seconds=0
-        var times=0
-        sh=setInterval(function(){
-            times+=1
-            hours=parseInt(times/3600)
-            mins=parseInt((times-hours*3600)/60)
-            seconds=times%60
-            var d = document.getElementById('time');
-            d.innerHTML='考试用时:'+hours+':'+mins+':'+seconds;
-        },1000)
-    </script>
+</div>
 
-    <script>
-        var select=new Vue({
-            el:'#collection_fangzhen',
-            data:{
-                'keshi':'泌尿外科',
-                num:5,
-                cardh:'1000px',
-                collec:true
+
+<script>
+    var guides=new Vue({
+        el:'#guide',
+        data:{
+            word:'',
+            status:1,
+            stars:[
+                true,
+                true,
+                true
+            ],
+            objects:eval('[{"发布时间":"2021-04-29","名称":"2020 EAU指南：肌层浸润和转移性膀胱癌","地址":"https://www.medsci.cn/guideline/show_article.do?id=165141c00190ae5c","描述":"2020年4月，欧洲泌尿外科学会(EAU)发布了肌层浸润和转移性膀胱癌指南，本文主要概述了更新的肌层浸润和转移性膀胱癌指南的主要内容，涉及诊断和治疗的最新信息，以便纳入临床实践。","发布组织":"欧洲泌尿外科学会"},{"发布时间":"2021-08-15","名称":"2021 CUA指南：非肌层浸润膀胱癌的管理（全文）","地址":"https://www.medsci.cn/guideline/show_article.do?id=8f7131c0022090c0","描述":"2021年8月，加拿大泌尿外科协会(CUA)发布了非肌层浸润性性膀胱癌的管理指南。","发布组织":"加拿大泌尿外科协会"},{"发布时间":"2021-09-09","名称":"2021 EAU指南：非肌层浸润性膀胱癌（Ta，T1和CIS）","地址":"https://www.medsci.cn/guideline/show_article.do?id=f20911c0021860b0","描述":"本文提供了EAU关于非肌层浸润性膀胱癌诊治的最新指导建议，涉及分类、危险因素、诊断、预后因素以及治疗。","发布组织":"欧洲泌尿外科学会"}]')
+        },
+        methods:{
+            setshow:function () {
+                this.status=1
             },
-            methods:{
-                setkeshi:function (keshi1){
-                    this.keshi=keshi1
-                },
-                setnum:function (num1) {
-                    this.num=num1
-                    if(num1===-1){
-                        this.cardh='1500px'
-                        clearInterval(sh)
-                    }
-                },
-                setCollec:function () {
-                    this.collec=!this.collec
-                }
+            setStar(index){
+                var tmp=!this.stars[index]
+                this.stars.splice(index,1,tmp)
+                console.log(this.stars)
             }
-        })
-    </script>
-    <script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-    <script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
-    <script>
-        layui.use(['layer', 'miniTab', 'echarts'], function () {
-            var $ = layui.jquery,
-                layer = layui.layer,
-                miniTab = layui.miniTab,
-                echarts = layui.echarts;
+        }
+    })
+</script>
 
-            miniTab.listen();
-
-            /**
-             * 查看公告信息
-             **/
-            $('body').on('click', '.layuimini-notice', function () {
-                var title = $(this).children('.layuimini-notice-title').text(),
-                    noticeTime = $(this).children('.layuimini-notice-extra').text(),
-                    content = $(this).children('.layuimini-notice-content').html();
-                var html =
-                    '<div style="padding:15px 20px; text-align:justify; line-height: 22px;border-bottom:1px solid #e2e2e2;background-color: #2f4056;color: #ffffff">\n' +
-                    '<div style="text-align: center;margin-bottom: 20px;font-weight: bold;border-bottom:1px solid #718fb5;padding-bottom: 5px"><h4 class="text-danger">' +
-                    title + '</h4></div>\n' +
-                    '<div style="font-size: 12px">' + content + '</div>\n' +
-                    '</div>\n';
-                parent.layer.open({
-                    type: 1,
-                    title: '系统公告' +
-                        '<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">' +
-                        noticeTime + '</span>',
-                    area: '300px;',
-                    shade: 0.8,
-                    id: 'layuimini-notice',
-                    btn: ['查看', '取消'],
-                    btnAlign: 'c',
-                    moveType: 1,
-                    content: html,
-                    success: function (layero) {
-                        var btn = layero.find('.layui-layer-btn');
-                        btn.find('.layui-layer-btn0').attr({
-                            href: 'https://gitee.com/zhongshaofa/layuimini',
-                            target: '_blank'
-                        });
-                    }
-                });
-            });
-
-
-
-        });
-    </script></div>
 </body>
-
 </html>
