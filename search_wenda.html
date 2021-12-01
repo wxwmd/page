@@ -109,20 +109,21 @@
         },
         methods:{
             getGuidance:function (){
-                var that=this
-                axios.get("http://localhost:8080/interaction?word="+this.word).then(function (response){
-                    console.log(response.data)
-                    if (response.data.length===0){
-                        that.status=2
-                    }else{
-                        that.objects=response.data
-                        console.log(that.objects)
-                        that.status=1
-                    }
-                },function (err) {
-                    console.log(err)
-                    this.status=3
-                })
+                this.objects=eval('[{"问题":"NMIBC患者行TURBT的适应症？","回答":"对怀疑NMIBC的患者，推荐TURBT作为诊断和初始治疗步骤。"},{"问题":"NMIBC患者行二次TURBT的指征？","回答":"对首次切除不充分、首次切除标本中没有肌层组织、高危肿瘤、T1期肿瘤、G3/高级别肿瘤（CIS除外），推荐行二次TURBT。"},{"问题":"NMIBC患者首次TURBT切除的范围？","回答":"首次TURBT应对所有内镜可见肿瘤行深达基层切除。对于1cm以内的肿瘤，可将其与基地部分膀胱壁同时切除进行病理性诊断；对于较大肿瘤，选择分块切除直至露出正常的膀胱壁基层；病理送检标本中应包含肌层组织。"},{"问题":"NMIBC患者不宜优先选用TURBT的指征？","回答":"有阻碍TURBT实施因素且无法克服的患者、需行根治性膀胱切除术的患者不推荐优先使用TURBT。"},{"问题":"NMIBC患者行荧光或窄谱光成像引导下TURBT的指征？","回答":"对怀疑有多发性肿瘤、CIS、高级别肿瘤的患者，或尿细胞学检查阳性但普通膀胱镜检查正常时，若设备、操作人员条件允许，可采用荧光或窄谱光成像引导下TURBT。"}]')
+                this.status=1
+                // axios.get("http://localhost:8080/interaction?word="+this.word).then(function (response){
+                //     console.log(response.data)
+                //     if (response.data.length===0){
+                //         that.status=2
+                //     }else{
+                //         that.objects=response.data
+                //         console.log(that.objects)
+                //         that.status=1
+                //     }
+                // },function (err) {
+                //     console.log(err)
+                //     this.status=3
+                // })
             }
         }
     })
