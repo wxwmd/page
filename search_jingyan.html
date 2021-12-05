@@ -35,7 +35,7 @@
 <body>
 
 <!--搜索界面-->
-<div id="entity">
+<div id="jingyan">
 
     <div class="row container">
         <div style="margin-top: 100px"></div>
@@ -106,8 +106,8 @@
 
 
 <script>
-    var entity=new Vue({
-        el:'#entity',
+    var jingyan=new Vue({
+        el:'#jingyan',
         data:{
             word:'',
             objects:null,
@@ -115,6 +115,7 @@
         },
         methods:{
             getGuidance:function (){
+                console.log("开始获取实例信息")
                 var that=this
                 axios.get("http://localhost:8080/instance?name="+this.word).then(function (response){
                     console.log(response.data)
