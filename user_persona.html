@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户画像</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
+
+    <!-- Admin Forms CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <style>
+        .layui-card {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #1aa094;
+        }
+
+        .icon-blue {
+            color: #1e9fff !important;
+        }
+
+        .icon-tip {
+            color: #ff5722 !important;
+        }
+
+        .layuimini-qiuck-module a i {
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 30px;
+            background-color: #F8F8F8;
+            color: #333;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+        }
+
+        .layuimini-qiuck-module a cite {
+            position: relative;
+            top: 2px;
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .welcome-module {
+            padding: 10px 10px 10px 10px;
+            width: 100%;
+        }
+
+        .main_btn>p {
+            height: 40px;
+        }
+
+        .layui-bg-number {
+            padding: 5px 5px 5px 5px;
+            background-color: #F8F8F8;
+        }
+
+        .search_input{
+            border:none;
+            border-bottom: 1px solid #aaaaaa;
+            height: 60%;
+            margin-bottom: 50px;
+            margin-left: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="layuimini-container" id="persona">
+    <div class="layuimini-main">
+        <div class="layui-row ">
+            <div class="layui-col-md8">
+                <div class="layui-row ">
+                    <div class="layui-col-md4">
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                <i class="fa fa-address-card-o icon icon-blue"></i>个人信息
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="welcome-module">
+                                    <h4>魏孝文</h4>
+                                    <div>
+                                        <i class="fa fa-venus-mars" aria-hidden="true" style="color: #a3a7ad"></i>
+                                        <span style="margin-left: 10px">男</span>
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-map-marker" aria-hidden="true" style="color:#a3a7ad"></i>
+                                        <span style="margin-left: 10px">湖北省-武汉市</span>
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-hospital-o" aria-hidden="true" style="color:#a3a7ad"></i>
+                                        <span style="margin-left: 10px">武汉大学中南医院</span>
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-user-md" aria-hidden="true" style="color:#a3a7ad"></i>
+                                        <span style="margin-left: 10px">副主任医师</span>
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-stethoscope" aria-hidden="true" style="color: #a3a7ad"></i>
+                                        <span style="margin-left: 10px">泌尿外科</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md8">
+                        <div class="layui-card">
+                            <div class="layui-card-header"><i class="fa fa-star icon"></i>我的兴趣</div>
+                            <div class="layui-card-body">
+                                <div class="welcome-module">
+                                    <div class="layui-row layui-col-space10">
+                                        <div class="layui-col-md2"   v-for="(item,index) in tags" >
+                                            <div class=" layui-bg-number">
+                                                <span style="text-align: center">{{item}}</span>
+                                                <i class="fa fa-times-circle" aria-hidden="true" style="margin-left: 5px;cursor: pointer" @click="deleteTag(index)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md12" >
+                        <div class="layui-card">
+                            <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>医学技能图谱</div>
+                            <div class="layui-card-body">
+                                <div id="echarts-records" style="width: 100%;min-height:500px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md4" >
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <i class="fa fa-bullhorn icon icon-tip"></i>探索主题
+                        <input class="search_input" placeholder="请输入搜索内容">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-card" v-for="(item,index) in projects">
+                            <div class="layui-card-header">
+                                <i class="fa fa-book icon icon-blue"></i>{{item.name}}
+                                <div style="float: right;margin-right: 100px" @click="addTag(item.name)" >
+                                    <i class="fa fa-plus-square-o fa-lg"></i>
+                                </div>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="welcome-module">
+                                    <span>{{item.description}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var persona=new Vue({
+        el:'#persona',
+        data:{
+            tags:[
+                "膀胱癌",
+                "TURBT",
+                "泌尿外科",
+                "NMIBC",
+                "癌症",
+                "肿瘤",
+                "尿结石",
+                "膀胱肿瘤",
+                "BCG灌注"
+            ],
+            projects:[
+                {
+                    name:"卡介苗",
+                    description:"卡介苗（BCG）灌注治疗是治疗NMIBC的一种操作治疗方案。"
+                },
+                {
+                    name:"膀胱切除",
+                    description: "膀胱全切的手术方式包括开放手术、常规腹腔镜手术及机器人辅助腹腔镜手术。 开放手术仍是根治性膀胱全切术的金标准，然而因其较大的创伤性现在已逐渐少用。"
+                },
+                {
+                    name:"肿瘤复发",
+                    description: "肿瘤复发是原发部位肿瘤经正规治疗消退后，过一段时间又在原发病灶所在的组织器官上长出新的肿瘤，还有一种可能是再次出现一个与原发肿瘤没有任何关系的新肿瘤，这种情况相对罕见，医生通常根据肿瘤复发的位置来界定。"
+                },
+                {
+                    name: "随访监测",
+                    description: "常规监测是指地区项目办通过相关政府部门（包括卫生、公安、民政、社会保障、计划生育等）常规工作中形成的资料和数据库，从中筛选出项目所需的随访信息，收集研究对象各类死亡、发病、迁移和失访等终点事件，具有覆盖面广、政策性强、稳定性好、成本较低等诸多优点，是CKB项目长期随访的基础手段。"
+                }
+            ]
+        },
+        methods:{
+            deleteTag:function (index) {
+                this.tags.splice(index,1)
+            },
+            addTag:function (tag) {
+                if (this.tags.indexOf(tag)!==-1){
+                    alert("已经添加此标签")
+                }else{
+                    this.tags.splice(0,0,tag)
+                }
+            }
+        }
+    })
+</script>
+
+<!--画技能图-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('echarts-records'));
+    // 指定图表的配置项和数据
+    option = {
+
+        tooltip: {},
+        legend: {
+            data: ['医学能力评估'],
+            right:'1%',
+            top:'5%',
+        },
+        radar: {
+            // shape: 'circle',
+            center:['50%','55%'],
+            name: {
+                textStyle: {
+                    color: '#fff',
+                    backgroundColor: '#999',
+                    borderRadius: 3,
+                    padding: [3, 5]
+                }
+            },
+            indicator: [
+                { name: '知识广度', max: 100},
+                { name: '知识深度', max: 100},
+                { name: '交流能力', max: 100},
+                { name: '学以致用', max: 100},
+                { name: '风险预防', max: 100}
+            ]
+        },
+        series: [{
+            name: '预算 ',
+            type: 'radar',
+            areaStyle: {
+                color: "#008800",
+                normal: {
+                    opacity: 0.5,  //背景透明
+                },
+            },
+            data: [
+                {
+                    value: [79, 61, 86, 72, 91],
+                    name: '医学能力评估'
+                }
+            ]
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+
+</html>

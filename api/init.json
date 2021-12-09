@@ -74,6 +74,12 @@
         "href": "auto_answer.html",
         "icon": "fa fa-quora",
         "target": "_self"
+      },
+      {
+        "title": "用户画像",
+        "href": "user_persona.html",
+        "icon": "fa fa-user-plus",
+        "target": "_self"
       }
     ]
   }]

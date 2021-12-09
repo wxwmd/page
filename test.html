@@ -2,68 +2,63 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>仿真问诊</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
-    <link rel="stylesheet" href="css/public.css" media="all">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
-
-    <!-- Admin Forms CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.min.css">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.min.js"></script>
 </head>
 <body>
-<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-<!--[if lt IE 9]>
-<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<div class="layui-container">
-    常规布局（以中型屏幕桌面为例）：
-    <div class="layui-row">
-        <div class="layui-col-md9">
-            你的内容 9/12
-        </div>
-        <div class="layui-col-md3">
-            你的内容 3/12
-        </div>
-    </div>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    option = {
 
-    移动设备、平板、桌面端的不同表现：
-    <div class="layui-row">
-        <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
-            移动：6/12 | 平板：6/12 | 桌面：4/12
-        </div>
-        <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
-            移动：6/12 | 平板：6/12 | 桌面：4/12
-        </div>
-        <div class="layui-col-xs4 layui-col-sm12 layui-col-md4">
-            移动：4/12 | 平板：12/12 | 桌面：4/12
-        </div>
-        <div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
-            移动：4/12 | 平板：7/12 | 桌面：8/12
-        </div>
-        <div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
-            移动：4/12 | 平板：5/12 | 桌面：4/12
-        </div>
-    </div>
-</div>
-
-
-<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+        tooltip: {},
+        legend: {
+            data: ['医学能力评估'],
+            right:'1%',
+            top:'5%',
+        },
+        radar: {
+            // shape: 'circle',
+            center:['50%','55%'],
+            name: {
+                textStyle: {
+                    color: '#fff',
+                    backgroundColor: '#999',
+                    borderRadius: 3,
+                    padding: [3, 5]
+                }
+            },
+            indicator: [
+                { name: '知识广度', max: 100},
+                { name: '知识深度', max: 100},
+                { name: '交流能力', max: 100},
+                { name: '学以致用', max: 100},
+                { name: '风险预防', max: 100}
+            ]
+        },
+        series: [{
+            name: '预算 ',
+            type: 'radar',
+            areaStyle: {
+                color: "#008800",
+                normal: {
+                    opacity: 0.5,  //背景透明
+                },
+            },
+            data: [
+                {
+                    value: [79, 61, 86, 72, 91],
+                    name: '医学能力评估'
+                }
+            ]
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
 </body>
 </html>
