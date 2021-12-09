@@ -4,7 +4,7 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <title>临床指南搜索</title>
-    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
     <link rel="stylesheet" href="css/public.css" media="all">
     <style>
@@ -161,7 +161,7 @@
 
         <div style="margin-top: 100px"></div>
 
-        <div class="col-md-4 col-lg-offset-6">
+        <div class="col-md-4 col-md-offset-5">
             <input type="text" class="form-control" placeholder="请输入临床指南关键字" v-model="word" @keyup.enter="setshow"/>
         </div>
 
@@ -172,7 +172,7 @@
         </div>
     </div>
 
-    <div class="col-md-2 col-md-offset-10" v-if="status===1">
+    <div class="col-md-3 col-md-offset-9" v-if="status===1">
         <div class="alert alert-micro alert-border-left alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <i class="fa fa-check pr10"></i>

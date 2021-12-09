@@ -39,7 +39,7 @@
 
     <div class="row container">
         <div style="margin-top: 100px"></div>
-        <div class="col-md-4 col-lg-offset-6">
+        <div class="col-md-4 col-md-offset-5">
             <input type="text" class="form-control" placeholder="请输入医疗实例关键字" v-model="word" @keyup.enter="getGuidance"/>
         </div>
 
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <div class="col-md-2 col-md-offset-10" v-if="status===1">
+    <div class="col-md-3 col-md-offset-9" v-if="status===1">
         <div class="alert alert-micro alert-border-left alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <i class="fa fa-check pr10"></i>
@@ -117,7 +117,7 @@
             getGuidance:function (){
                 console.log("开始获取实例信息")
                 var that=this
-                axios.get("http://localhost:8080/instance?name="+this.word).then(function (response){
+                axios.get("http://u27665492r.wicp.vip/instance?name="+this.word).then(function (response){
                     console.log(response.data)
                     if (response.data.length===0){
                         that.status=2

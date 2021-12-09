@@ -1,85 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum=1.0, user-scalable=no shrink-to-fit=no" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>迅飞语音听写（流式版）WebAPI</title>
-    <link rel="stylesheet" href="./css/base.css" />
+    <meta charset="utf-8">
+    <title>仿真问诊</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
+
+    <!-- Admin Forms CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
 </head>
-
 <body>
-<h1 class="h1">迅飞语音听写（流式版）WebAPI</h1>
-<hr>
-<section class="voice-box">
-    <input type="search" name="voice" id="voice-txt" />
-    <button id="start-btn">开始识别</button>
-</section>
-
-<section class="fixed-box" id="fixed-box">
-    <div class="fixed-main">
-        <button class="fixed-close" id="close-btn"></button>
-        <div id="fixed-txt">Hello! 请说出你想说话。。。！</div>
-        <div class="fixed-icon">
-            <img src="./images/voice.png" alt="" />
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div class="layui-container">
+    常规布局（以中型屏幕桌面为例）：
+    <div class="layui-row">
+        <div class="layui-col-md9">
+            你的内容 9/12
+        </div>
+        <div class="layui-col-md3">
+            你的内容 3/12
         </div>
     </div>
-</section>
 
-<script src="./js/crypto-js.min.js"></script>
-<script src="./js/voice.js"></script>
+    移动设备、平板、桌面端的不同表现：
+    <div class="layui-row">
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            移动：6/12 | 平板：6/12 | 桌面：4/12
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            移动：6/12 | 平板：6/12 | 桌面：4/12
+        </div>
+        <div class="layui-col-xs4 layui-col-sm12 layui-col-md4">
+            移动：4/12 | 平板：12/12 | 桌面：4/12
+        </div>
+        <div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
+            移动：4/12 | 平板：7/12 | 桌面：8/12
+        </div>
+        <div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
+            移动：4/12 | 平板：5/12 | 桌面：4/12
+        </div>
+    </div>
+</div>
 
-<script>
-    window.onload = function () {
-        const voiceTxt = document.querySelector('#voice-txt');
-        const startBtn = document.querySelector('#start-btn');
-        const fixedBox = document.querySelector('#fixed-box');
-        const fixedTxt = document.querySelector('#fixed-txt');
-        const closeBtn = document.querySelector('#close-btn');
-        let times = null;
 
-        // 实例化迅飞语音听写（流式版）WebAPI
-        const voice = new Voice({
-
-            // 服务接口认证信息 注：apiKey 和 apiSecret 的长度都差不多，请要填错哦，！
-            appId: '2cb50bd5',
-            apiSecret: 'OGM2ZmMxZDdmNWViMTBhOTZmZjlmYWQ0',
-            apiKey: '1a06139d0bc7580bbd49f489c7703ff8',
-            // 注：要获取以上3个参数，请到迅飞开放平台：https://www.xfyun.cn/services/voicedictation 【注：这是我的迅飞语音听写（流式版）每天服务量500（也就是调500次），如果你需求里大请购买服务量：https://www.xfyun.cn/services/voicedictation?target=price】
-
-            onWillStatusChange: function (oldStatus, newStatus) {
-                //可以在这里进行页面中一些交互逻辑处理：注：倒计时（语音听写只有60s）,录音的动画，按钮交互等！
-                fixedBox.style.display = 'block';
-            },
-            onTextChange: function (text) {
-                //监听识别结果的变化
-                voiceTxt.value = text;
-                fixedTxt.innerText = text;
-
-                // 3秒钟内没有说话，就自动关闭
-                if (text) {
-                    clearTimeout(times);
-                    times = setTimeout(() => {
-                        this.stop(); // voice.stop();
-                        fixedBox.style.display = 'none';
-                    }, 3000);
-                };
-            }
-        });
-
-        // 开始识别
-        startBtn['onclick'] = function () {
-            voice.start();
-        };
-
-        // 关闭识别
-        closeBtn['onclick'] = function () {
-            voice.stop();
-            fixedBox.style.display = 'none';
-        };
-    };
-</script>
+<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 </body>
-
 </html>

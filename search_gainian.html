@@ -112,7 +112,7 @@
 
             </div>
 
-            <div class="col-md-4 col-lg-offset-6" style="">
+            <div class="col-md-4 col-md-offset-5" style="">
                 <input type="text" class="form-control" placeholder="请输入医疗概念" v-model="name" @keyup.enter="getEntity"/>
             </div>
 
@@ -123,7 +123,7 @@
             </div>
         </div>
 
-        <div class="col-md-2 col-md-offset-10" v-if="status===1">
+        <div class="col-md-3 col-md-offset-9" v-if="status===1">
             <div class="alert alert-micro alert-border-left alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <i class="fa fa-check pr10"></i>
@@ -166,7 +166,7 @@
         </div>
 
         <!--使用知识卡片展示的概念-->
-        <div class="layuimini-container layui-col-md4 layui-col-md-offset4" style="margin-top: 100px;background-color: rgba(255,255,255,1%);border-width: 0" v-if="status===-1">
+        <div class="layuimini-container layui-col-md6 layui-col-md-offset3" style="margin-top: 50px;background-color: rgba(255,255,255,1%);border-width: 0" v-if="status===-1">
             <div class="layuimini-main" id="select">
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -176,7 +176,7 @@
                         </div>
                         <div class="layui-card-body" style="height: 270px">
                             <div class="welcome-module">
-                                <div class="layui-row layui-col-space10 layuimini-qiuck">
+                                <div class="layui-row layuimini-qiuck">
                                     <div class="layui-col-md2 layuimini-qiuck-module">
                                         <img src="images/gm.jpg" alt="图片" width="60">
                                     </div>
