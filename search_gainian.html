@@ -42,7 +42,7 @@
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <script src="js/echarts.js"></script>
     <style>
         .layui-card {
             border: 1px solid #f2f2f2;
@@ -97,6 +97,11 @@
             height: 40px;
         }
 
+        .link {
+            color: #1a6dd2;
+            cursor: pointer;
+        }
+
     </style>
 
 </head>
@@ -104,7 +109,7 @@
 
 
     <!--搜索界面-->
-    <div id="entity" style="background: #ffffff">
+    <div id="gainian_entity" style="background: #ffffff">
 
         <div class="row container">
 
@@ -113,16 +118,16 @@
             </div>
 
             <div class="col-md-4 col-md-offset-5" style="">
-                <input type="text" class="form-control" placeholder="请输入医疗概念" v-model="name" @keyup.enter="getEntity"/>
+                <input type="text" class="form-control" placeholder="请输入医疗概念" v-model="name" @keyup.enter="getEntity(1)"/>
             </div>
 
             <div class="input-group-btn col-md-1">
-                <button class="btn btn-info" @click="getEntity">搜索
+                <button class="btn btn-info" @click="getEntity(1)">搜索
                     <i class="bi bi-search"></i>
                 </button>
             </div>
         </div>
-
+        <!--提示框-->
         <div class="col-md-3 col-md-offset-9" v-if="status===1">
             <div class="alert alert-micro alert-border-left alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -147,95 +152,358 @@
             </div>
         </div>
 
-        <!--表格化显示的概念-->
-        <div  class="container" style="margin-top: 50px" v-if="status===1">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr class="info">
-                    <th>属性</th>
-                    <th>值</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(item,index) in properties">
-                    <th>{{item}}</th>
-                    <th>{{values[index]}}</th>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
         <!--使用知识卡片展示的概念-->
-        <div class="layuimini-container layui-col-md6 layui-col-md-offset3" style="margin-top: 50px;background-color: rgba(255,255,255,1%);border-width: 0" v-if="status===-1">
+        <div class="layuimini-container layui-col-md6 layui-col-md-offset3" style="margin-top: 50px;background-color: rgba(255,255,255,1%);border-width: 0" >
             <div class="layuimini-main" id="select">
                 <div class="layui-col-md12">
-                    <div class="layui-card">
+                    <div class="layui-card" v-if="element===1">
                         <div class="layui-card-header">
                             <i class="fa fa-medkit icon icon-blue"></i>
-                            <font color="#1e90ff">感冒</font>
+                            <font color="#1e90ff">非肌层浸润性膀胱癌</font>
                         </div>
                         <div class="layui-card-body" style="height: 270px">
                             <div class="welcome-module">
                                 <div class="layui-row layuimini-qiuck">
                                     <div class="layui-col-md2 layuimini-qiuck-module">
-                                        <img src="images/gm.jpg" alt="图片" width="60">
+                                        <img src="images/NMIBC.jpg" alt="图片" width="60">
                                     </div>
                                     <div class="layui-col-md9">
-                                        <p>百姓所说的感冒是指“普通感冒”，又称“伤风”、急性鼻炎或上呼吸道感染。感冒是一种常见的急性上呼吸道病毒性感染性疾病，多由鼻病毒、副流感病毒、呼吸道合胞病毒、埃可病毒、柯萨奇病毒、冠<i>…</i></p>
+                                        <p>非肌层浸润性膀胱癌指局限于<font class="link">膀胱黏膜层</font>（Tis、Ta）及固有层（T1），且肌层未见浸润的膀胱乳头状恶性肿瘤，既往称为表浅性膀胱癌。</p>
                                     </div>
                                 </div>
-                                <div class="layui-row layui-col-space10 layuimini-qiuck layui-col-md-offset2" style="margin-left: 5px">
-                                    <p><strong>别称： </strong>伤风、急性鼻炎或上呼吸道感染</p>
-                                    <p><strong>就诊科室： </strong>呼吸内科</p>
-                                    <p><strong>常见病因： </strong> 多由鼻病毒、副流感病毒、呼吸道合胞病毒、埃可病毒、柯萨奇病毒、冠状病毒、腺病毒等引起。</p>
-                                    <p><strong>常见症状： </strong>  鼻塞，喷嚏，流涕，发热，咳嗽，头痛</p>
+                                <div class="layui-row layui-col-space10  layui-col-md-offset2" style="margin-left: 5px">
+                                    <p><strong>别称： </strong>NMIBC</p>
+                                    <p><strong>就诊科室： </strong><font class="link">泌尿外科</font> </p>
+                                    <p><strong>常见症状： </strong>  肉眼血尿、尿道感染。</p>
+                                    <p><strong>治疗方式： </strong> <font class="link" @click="getEntity(2)">经尿道膀胱肿瘤电切(TURBT)</font>,<font class="link">卡介苗</font> （BCG）灌注治疗。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="layui-card" v-if="element===2">
+                        <div class="layui-card-header">
+                            <i class="fa fa-medkit icon icon-blue"></i>
+                            <font color="#1e90ff">经尿道膀胱肿瘤电切</font>
+                        </div>
+                        <div class="layui-card-body" style="height: 270px">
+                            <div class="welcome-module">
+                                <div class="layui-row layuimini-qiuck">
+                                    <div class="layui-col-md2 layuimini-qiuck-module">
+                                        <img src="images/TURBT.png" alt="图片" width="60">
+                                    </div>
+                                    <div class="layui-col-md9">
+                                        <p>膀胱肿瘤切除手术名，适用于表浅膀胱肿瘤、未浸及粘膜下层者，不论其大小、部位和病理分级。正常情况下经尿道膀胱肿瘤电切后的第1日可去除导尿管，第2日可出院，血块积存和尿外渗为主要并发症。</p>
+                                    </div>
+                                </div>
+                                <div class="layui-row layui-col-space10  layui-col-md-offset2" style="margin-left: 5px">
+                                    <p><strong>别称： </strong>TURBT</p>
+                                    <p><strong>适应症： </strong>表浅膀胱肿瘤、未浸及粘膜下层者，不论其大小、部位和病理分级，均可适用。</p>
+                                    <p><strong>注意事项： </strong> <font class="link">尿道狭窄</font>、<font class="link">肿瘤的部位</font>、<font class="link">闭孔神经抽搐</font>、<font class="link">膀胱穿孔</font>、</p>
+                                    <p><strong>术后处理： </strong> 正常情况下经尿道膀胱肿瘤电切后的第1日可去除导尿管，第2日可出院，出院前预约复查日期和膀胱开始灌注化学药物的日期。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!--知识图谱可视化-->
+        <div id="chart1" class="layuimini-container layui-col-md6 layui-col-md-offset3" style=" height: 600px;" ></div>
 
     </div>
 
-
     <script>
         var entity=new Vue({
-            el:'#entity',
+            el:'#gainian_entity',
             data:{
                 name:'',
                 properties:[],
                 values:[],
-                status:0
+                status:0,
+                element:0
             },
             methods:{
-                getEntity:function (){
-                    this.status=-1
-                    return
-                    var that=this
-                    axios.get("http://localhost:8080/getEntity?name="+this.name).then(function (response){
-                        var data="("+response.data+")"
-                        console.log(data)
-                        if (data==='()'){
-                            that.status=2
-                        }else{
-                            var responseObject = eval(data);
-                            console.log(responseObject.name)
-                            console.log(Object.keys(responseObject))
-                            that.properties=Object.keys(responseObject)
-                            that.values=Object.values(responseObject)
-                            that.status=1
-                        }
-                    },function (err) {
-                        console.log(err)
-                        this.status=3
-                    })
+                getEntity:function (element){
+                    if (element===1){
+                        this.status=1
+                        this.element=1//展示NMIBC的关系图
+                        showGraph(entityRelation1,key_word1)
+                    } else if (element===2){
+                        this.status=1
+                        this.element=2//展示TURBT的关系图
+                        showGraph(entityRelation2,key_word2)
+                    }
+
                 }
             }
         })
+    </script>
+
+    <script type="text/javascript">
+        var entityRelation1 = [ {"r": {"name": "操作治疗方案"}, "m": {"name": "TURBT"}}, {"r": {"name": "所属科室"}, "m": {"name": "泌尿外科"}},
+            {"r": {"name": "中文名"}, "m": {"name": "非肌层浸润性膀胱癌"}}, {"r": {"name": "操作治疗方案"}, "m": {"name": "膀胱灌注BCG"}}, {"r": {"name": "操作治疗方案"}, "m": {"name": "膀胱切除术"}},
+            {"r": {"name": "临床表现"}, "m": {"name": "血尿"}}, {"r": {"name": "临床表现"}, "m": {"name": "泌尿道感染"}}, {"r": {"name": "临床表现"}, "m": {"name": "高级别肿瘤"}},
+            {"r": {"name": "检查项"}, "m": {"name": "尿常规检查"}}, {"r": {"name": "检查项"}, "m": {"name": "尿脱落细胞学"}},
+            {"r": {"name": "检查项"}, "m": {"name": "尿肿瘤标记物"}}, {"r": {"name": "检查项"}, "m": {"name": "腹部和盆腔B超"}}]
+
+        var entityRelation2=[{"r": {"name": "中文名"}, "m": {"name": "经尿道膀胱肿瘤电切"}}, {"r": {"name": "适应症"}, "m": {"name": "NMIBC"}}, {"r": {"name": "术前准备"}, "m": {"name": "备血"}},
+            {"r": {"name": "术前准备"}, "m": {"name": "进行静脉肾盂造影除外并存的上尿路肿瘤"}}, {"r": {"name": "术中注意事项"}, "m": {"name": "尿道狭窄"}}, {"r": {"name": "术中注意事项"}, "m": {"name": "肿瘤部位"}},
+            {"r": {"name": "术中注意事项"}, "m": {"name": "闭孔神经抽搐"}}, {"r": {"name": "术中注意事项"}, "m": {"name": "膀胱穿孔"}}, {"r": {"name": "术中注意事项"}, "m": {"name": "出血乳头状肿瘤内的动脉出血常不易电凝止血。"}},
+            {"r": {"name": "术后并发症"}, "m": {"name": "血块积存"}}, {"r": {"name": "术后并发症"}, "m": {"name": "尿外渗"}}];
+        // entityRelation中的r代表的关系，m代表的是第二个实体，这个数据是从neo4j数据库查询后进行json格式化后的，原数据过多，就删减了一部分。
+        var key_word1 = 'NMIBC';
+        var key_word2='TURBT'
+
+        function showGraph(entityRelation,key_word) {
+            var data = [];  // echarts中的节点数组
+            var links = [];  // echarts中边的数组
+
+            // 获取实体1, 也就是中心节点
+            var node = {} ;
+            node['name'] = key_word;
+            node['draggable'] = true;  // 设置中心节点是否可以拖拽
+            var id = 0;
+            node['id'] = id.toString();
+            data.push(node);
+
+            // 获取实体2, 存储在data中, 如果实体2已经存在于data中, 则不push
+            var maxDisPlayNode = 16;  // 对展示节点的数量进行限制
+            // console.log("实体长度----->", entityRelation.length);  // 显示关系个数
+            for(var i = 0; i < Math.min(maxDisPlayNode, entityRelation.length); i++) {
+                node = {};
+                node['name'] = entityRelation[i]['m']['name'];
+                node['draggable'] = true;
+
+                if(entityRelation[i]['r']['name'] === '所属科室') {
+                    node['category'] = 1;  // 节点分类, 数字代表option.series.categories中的索引
+                } else if (entityRelation[i]['r']['name'] === '中文名') {
+                    node['category'] = 2;
+                } else if (entityRelation[i]['r']['name'] === '操作治疗方案') {
+                    node['category'] = 3;
+                } else if (entityRelation[i]['r']['name'] === '临床表现') {
+                    node['category'] = 4;
+                } else if (entityRelation[i]['r']['name'] === '检查项') {
+                    node['category'] = 5;
+                } else if (entityRelation[i]['r']['name'] === '术前准备') {
+                    node['category'] = 6;
+                } else if (entityRelation[i]['r']['name'] === '术中注意事项') {
+                    node['category'] = 7;
+                } else if (entityRelation[i]['r']['name'] === '适应症') {
+                    node['category'] = 8;
+                } else if (entityRelation[i]['r']['name'] === '术后并发症') {
+                    node['category'] = 9;
+                } else if (entityRelation[i]['r']['name'] === '生产药品') {
+                    node['category'] = 10;
+                }
+
+                id = i + 1;
+                node['id'] = id.toString();
+
+                var flag = 1;
+                relationTarget = id.toString();
+                for (var j = 0; j < data.length; j++) {
+                    if (data[j]['name'] === node['name']) {
+                        flag = 0;
+                        relationTarget = data[j]['id'];
+                        break;
+                    }
+                }
+
+                relation = {};
+                relation['source'] = 0;  // 关系起点, 数字代表的是节点的id, 即node[id]
+                relation['target'] = relationTarget;  // 关系指向的终点, 也是id, 即通过节点的id描述两个节点以及关系
+                relation['category'] = 0;
+
+                if (flag === 1) {
+                    data.push(node);
+                    relation['value'] = entityRelation[i]['r']['name'];
+                    relation['symbolSize'] = 10;
+                    links.push(relation);
+                } else {
+                    maxDisPlayNode += 1;
+                    for (var k = 0; k < links.length; k++) {
+                        if (links[k]['target'] === relationTarget) {
+                            links[k]['value'] = links[k]['value'] + " | " + entityRelation[i]['r']['name'];
+                            break;
+                        }
+                    }
+                }
+            }
+            // console.log("data====>>>", data);
+            // console.log("links====>>>", links);
+
+            // 初始化echarts实例
+            var myChart = echarts.init(document.getElementById("chart1"));
+
+            option = {
+                title: {
+                    text: key_word+'知识图谱'
+                },
+                tooltip: {},
+                animationDurationUpdate: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 12
+                        },
+                    }
+                },
+                legend: {
+                    x: "center",
+                    show: false
+                },
+                series: [
+                    {
+                        type: 'graph',
+                        layout: 'force',
+                        symbolSize: 45,
+                        focusNodeAdjacency: false,  // 是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点, 默认是true
+                        roam: true,
+                        edgeSymbol: ['none', 'arrow'],
+                        categories: [{
+                            name: '查询实体',
+                            itemStyle: {
+                                normal: {
+                                    color: "#FF0000",
+                                }
+                            }
+                        }, {
+                            name: '所属科室',
+                            itemStyle: {
+                                normal: {
+                                    color: "#4592FF",
+                                }
+                            }
+                        }, {
+                            name: '常用药品',
+                            itemStyle: {
+                                normal: {
+                                    color: "#FFFF00",
+                                }
+                            }
+                        }, {
+                            name: '宜吃',
+                            itemStyle: {
+                                normal: {
+                                    color: "#66CD00",
+                                }
+                            }
+                        }, {
+                            name: '诊断检查',
+                            itemStyle: {
+                                normal: {
+                                    color: "#F08080",
+                                }
+                            }
+                        }, {
+                            name: '检查项',
+                            itemStyle: {
+                                normal: {
+                                    color: "#B23AEE",
+                                }
+                            }
+                        }, {
+                            name: '好评药品',
+                            itemStyle: {
+                                normal: {
+                                    color: "#FFB90F",
+                                }
+                            }
+                        }, {
+                            name: '推荐食谱',
+                            itemStyle: {
+                                normal: {
+                                    color: "#7FFF00",
+                                }
+                            }
+                        },{
+                            name: '症状',
+                            itemStyle: {
+                                normal: {
+                                    color: "#F08080",
+                                }
+                            }
+                        }, {
+                            name: '术后并发症',
+                            itemStyle: {
+                                normal: {
+                                    color: "#87CEFA",
+                                }
+                            }
+                        }, {
+                            name: '生产药品',
+                            itemStyle: {
+                                normal: {
+                                    color: "#FFFF00",
+                                }
+                            }
+                        }],
+                        label: {   //节点label
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 12,
+                                    fontStyle : 'normal',
+                                    fontWeight : 'bolder',
+                                    fontFamily : 'sans-serif',
+                                },
+                                formatter: function (value) {  // 太长的节点名称设置不完全显示
+                                    if (value.name.length > 5) {
+                                        return value.name.substring(0,5)
+                                    }
+                                    return value.name
+                                }
+                            }
+                        },
+
+                        force: {
+                            repulsion: 1000,
+                            edgeLength: [150, 100],
+                            layoutAnimation : true
+                            // 因为力引导布局会在多次迭代后才会稳定, 这个参数决定是否显示布局的迭代动画(节点数量过多, 图在迭代的过程中会旋转),
+                            // 在浏览器端节点数据较多(>100)的时候不建议关闭, 布局过程会造成浏览器假死。
+                        },
+                        edgeSymbolSize: [4, 50],
+                        edgeLabel: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 10
+                                },
+                                formatter: "{c}"   // 标签内容格式器。模板变量有 {a}、{b}、{c}，分别表示系列名，数据名，数据值。
+                            }
+                        },
+                        data: data,  // 节点
+                        links: links,  // 边或者关系
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.5,
+                                width: 1.0,
+                                curveness: 0,
+                                color: "#262626"
+                            }
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option);  // 这步很重要, 必须设置才可以有效
+            myChart.on('click', function (param){
+                console.log('param---->', param);  // 打印出param, 可以看到里边有很多参数可以使用
+                //获取节点点击的数组序号
+                var arrayIndex = param.dataIndex;
+                console.log('arrayIndex---->', arrayIndex);
+                console.log('name---->', param.name);
+                if (param.dataType == 'node') {
+                    entity.getEntity(2)
+                } else {
+                    console.log("点击了边" + param.value)
+                }
+            });
+        }
+
     </script>
 </body>
 </html>
