@@ -116,19 +116,22 @@
             getGuidance:function (){
                 console.log("开始获取实例信息")
                 var that=this
-                axios.get("http://u27665492r.wicp.vip/instance?name="+this.word).then(function (response){
-                    console.log(response.data)
-                    if (response.data.length===0){
-                        that.status=2
-                    }else{
-                        that.objects=response.data
-                        console.log(that.objects)
-                        that.status=1
-                    }
-                },function (err) {
-                    console.log(err)
-                    this.status=3
-                })
+                var response=eval({ "患者信息":"患者男性 59岁 无既往史或个人史 。", "现病史":[ "1、2020年4月22日以“反复排肉眼血尿3个月”为主诉就诊。", "2、超声检查提示膀胱占位，不除外膀胱恶性肿瘤。" ], "入院检查":[ "1、多参数MRI，膀胱左侧壁结节灶，大小约1.6*1.8cm，病灶突破浆膜层伴周围组织浸润，累及左侧输尿管内口。病灶周围、左侧髂内动脉旁及双侧腹股沟区多发淋巴结，考虑转移可能。", "2、膀胱镜检查及活检病理，膀胱左侧壁可见多发菜花样肿物，基底宽，肿物表面附有絮状物。对肿物进行多点活检。病理活检示：符合高级别浸润性尿路上皮癌，免疫组化：肿瘤细胞CK7(+)，CK20部分(+)，GAT A3 (+)，P63 (+)，PSA (-)，Ki-67约60% (+)" ], "诊断":"非肌层浸润性膀胱癌（NMIBC）", "治疗经过":"术前新辅助化疗（GC方案）联合免疫治疗（ICI）：吉西他滨，第1、8天；顺铂, 第2天+百泽安（替雷利珠单抗） 200mg IV，第8天，共4个周期。", "复查结果":[ "1、多参数MRI示：膀胱各壁光滑，原肿瘤体积明显缩小至不可见。", "2、膀胱镜：示膀胱各壁未见异常肿物，原病灶处已呈瘢痕状改变，遂将该部位行激光切除，术后病理示送检组织及肌层内未见肿瘤细胞，伴有大量淋巴细胞浸润。" ], "不良反应":"总体耐受性较好，期间甲状腺功能检测正常、肝肾功能正常，主要反应为皮肤病变：四肢、躯干、颈部出现红斑皮损瘙痒及色素沉着，对症处理可控制，无严重的不良反应 。" })
+                that.objects=response
+                that.status=1
+                // axios.get("http://u27665492r.wicp.vip/instance?name="+this.word).then(function (response){
+                //     console.log(response.data)
+                //     if (response.data.length===0){
+                //         that.status=2
+                //     }else{
+                //         that.objects=response.data
+                //         console.log(that.objects)
+                //         that.status=1
+                //     }
+                // },function (err) {
+                //     console.log(err)
+                //     this.status=3
+                // })
             }
         }
     })
