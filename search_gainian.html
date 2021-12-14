@@ -113,7 +113,7 @@
 
         <div class="row container">
 
-            <div style="margin-top: 100px;">
+            <div style="margin-top: 50px;">
 
             </div>
 
@@ -209,7 +209,7 @@
         </div>
 
         <!--知识图谱可视化-->
-        <div id="chart1" class="layuimini-container layui-col-md6 layui-col-md-offset3" style=" height: 600px;" ></div>
+        <div id="chart1" class="layuimini-container layui-col-md8 layui-col-md-offset2" style=" height: 600px;" ></div>
 
     </div>
 
@@ -255,7 +255,7 @@
         var key_word1 = 'NMIBC';
         var key_word2='TURBT'
 
-        function showGraph(entityRelation,key_word) {
+        function showGraph(entityRelation,key_word,) {
             var data = [];  // echarts中的节点数组
             var links = [];  // echarts中边的数组
 
@@ -275,27 +275,108 @@
                 node['name'] = entityRelation[i]['m']['name'];
                 node['draggable'] = true;
 
-                if(entityRelation[i]['r']['name'] === '所属科室') {
-                    node['category'] = 1;  // 节点分类, 数字代表option.series.categories中的索引
-                } else if (entityRelation[i]['r']['name'] === '中文名') {
-                    node['category'] = 2;
-                } else if (entityRelation[i]['r']['name'] === '操作治疗方案') {
-                    node['category'] = 3;
-                } else if (entityRelation[i]['r']['name'] === '临床表现') {
-                    node['category'] = 4;
-                } else if (entityRelation[i]['r']['name'] === '检查项') {
-                    node['category'] = 5;
-                } else if (entityRelation[i]['r']['name'] === '术前准备') {
-                    node['category'] = 6;
-                } else if (entityRelation[i]['r']['name'] === '术中注意事项') {
-                    node['category'] = 7;
-                } else if (entityRelation[i]['r']['name'] === '适应症') {
-                    node['category'] = 8;
-                } else if (entityRelation[i]['r']['name'] === '术后并发症') {
-                    node['category'] = 9;
-                } else if (entityRelation[i]['r']['name'] === '生产药品') {
-                    node['category'] = 10;
+                var category;
+                if (key_word==="NMIBC"){
+                    category=[{
+                        name: '所属科室',
+                        itemStyle: {
+                            normal: {
+                                color: "#4592FF",
+                            }
+                        }
+                    }, {
+                        name: '中文名',
+                        itemStyle: {
+                            normal: {
+                                color: "#FFFF00",
+                            }
+                        }
+                    }, {
+                        name: '操作治疗方案',
+                        itemStyle: {
+                            normal: {
+                                color: "#66CD00",
+                            }
+                        }
+                    }, {
+                        name: '临床表现',
+                        itemStyle: {
+                            normal: {
+                                color: "#F08080",
+                            }
+                        }
+                    }, {
+                        name: '检查项',
+                        itemStyle: {
+                            normal: {
+                                color: "#B23AEE",
+                            }
+                        }
+                    }]
+
+                    if(entityRelation[i]['r']['name'] === '所属科室') {
+                        node['category'] = 0;  // 节点分类, 数字代表option.series.categories中的索引
+                    } else if (entityRelation[i]['r']['name'] === '中文名') {
+                        node['category'] = 1;
+                    } else if (entityRelation[i]['r']['name'] === '操作治疗方案') {
+                        node['category'] = 2;
+                    } else if (entityRelation[i]['r']['name'] === '临床表现') {
+                        node['category'] = 3;
+                    } else if (entityRelation[i]['r']['name'] === '检查项') {
+                        node['category'] = 4;
+                    }
+                }else if (key_word==="TURBT"){
+                    category=[{
+                        name: '中文名',
+                        itemStyle: {
+                            normal: {
+                                color: "#FFFF00",
+                            }
+                        }
+                    }, {
+                        name: '术中注意事项',
+                        itemStyle: {
+                            normal: {
+                                color: "#FFB90F",
+                            }
+                        }
+                    }, {
+                        name: '适应症',
+                        itemStyle: {
+                            normal: {
+                                color: "#7FFF00",
+                            }
+                        }
+                    },{
+                        name: '术后并发症',
+                        itemStyle: {
+                            normal: {
+                                color: "#F08080",
+                            }
+                        }
+                    }, {
+                        name: '术前准备',
+                        itemStyle: {
+                            normal: {
+                                color: "#871EFA",
+                            }
+                        }
+                    }]
+                    if (entityRelation[i]['r']['name'] === '中文名') {
+                        node['category'] = 0;
+                    } else if (entityRelation[i]['r']['name'] === '术中注意事项') {
+                        node['category'] = 1;
+                    } else if (entityRelation[i]['r']['name'] === '适应症') {
+                        node['category'] = 2;
+                    } else if (entityRelation[i]['r']['name'] === '术后并发症') {
+                        node['category'] = 3;
+                    } else if (entityRelation[i]['r']['name'] === '术前准备') {
+                        node['category'] = 4;
+                    }
                 }
+
+
+
 
                 id = i + 1;
                 node['id'] = id.toString();
@@ -330,8 +411,6 @@
                     }
                 }
             }
-            // console.log("data====>>>", data);
-            // console.log("links====>>>", links);
 
             // 初始化echarts实例
             var myChart = echarts.init(document.getElementById("chart1"));
@@ -353,7 +432,8 @@
                 },
                 legend: {
                     x: "center",
-                    show: false
+                    show: true,  //展示节点标签
+                    top:"5%"
                 },
                 series: [
                     {
@@ -363,84 +443,7 @@
                         focusNodeAdjacency: false,  // 是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点, 默认是true
                         roam: true,
                         edgeSymbol: ['none', 'arrow'],
-                        categories: [{
-                            name: '查询实体',
-                            itemStyle: {
-                                normal: {
-                                    color: "#FF0000",
-                                }
-                            }
-                        }, {
-                            name: '所属科室',
-                            itemStyle: {
-                                normal: {
-                                    color: "#4592FF",
-                                }
-                            }
-                        }, {
-                            name: '常用药品',
-                            itemStyle: {
-                                normal: {
-                                    color: "#FFFF00",
-                                }
-                            }
-                        }, {
-                            name: '宜吃',
-                            itemStyle: {
-                                normal: {
-                                    color: "#66CD00",
-                                }
-                            }
-                        }, {
-                            name: '诊断检查',
-                            itemStyle: {
-                                normal: {
-                                    color: "#F08080",
-                                }
-                            }
-                        }, {
-                            name: '检查项',
-                            itemStyle: {
-                                normal: {
-                                    color: "#B23AEE",
-                                }
-                            }
-                        }, {
-                            name: '好评药品',
-                            itemStyle: {
-                                normal: {
-                                    color: "#FFB90F",
-                                }
-                            }
-                        }, {
-                            name: '推荐食谱',
-                            itemStyle: {
-                                normal: {
-                                    color: "#7FFF00",
-                                }
-                            }
-                        },{
-                            name: '症状',
-                            itemStyle: {
-                                normal: {
-                                    color: "#F08080",
-                                }
-                            }
-                        }, {
-                            name: '术后并发症',
-                            itemStyle: {
-                                normal: {
-                                    color: "#87CEFA",
-                                }
-                            }
-                        }, {
-                            name: '生产药品',
-                            itemStyle: {
-                                normal: {
-                                    color: "#FFFF00",
-                                }
-                            }
-                        }],
+                        categories: category,
                         label: {   //节点label
                             normal: {
                                 show: true,
